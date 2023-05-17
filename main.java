@@ -31,6 +31,14 @@ public class main{
 
             }
         } else if(args[0]=="-f")
-        
+        {
+            if(args.length > 1){
+                System.out.println("Too many arguments given");
+                return;
+            } else {
+                String inputFile = args[1];
+                
+            }
+        }
     }
 }

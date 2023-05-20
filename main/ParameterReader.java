@@ -5,76 +5,48 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class ParameterReader {
-    int n; // Number of nodes in the graph
-    int a;  // the nest node
-    int n1; // weight of traversing an edge
-    float alpha; // parameter concerning the ant movements
-    float beta; // parameter concerning the ant movements
-    float delta;    // parameter concerning the ant movements
-    float eta;  // parameter concerning the pheromone evaporation
-    float rho;  // parameter concerning the pheromone evaporation
-    float gamma;    // parameter concerning pheromone level
-    int nu;    // ant colony size
-    float tau; //final instant of the simulation
+    static int readingMode; // 0 for -r, 1 for -f
+    static int n; // Number of nodes in the graph
+    static int a;  // the nest node
+    static int n1; // weight of traversing an edge
+    static float alpha; // parameter concerning the ant movements
+    static float beta; // parameter concerning the ant movements
+    static float delta;    // parameter concerning the ant movements
+    static float eta;  // parameter concerning the pheromone evaporation
+    static float rho;  // parameter concerning the pheromone evaporation
+    static float gamma;    // parameter concerning pheromone level
+    static int nu;    // ant colony size
+    static float tau; //final instant of the simulation
 
     String inputFile;
 
-    public static void main(String[] args){
-        if(args[0] == "-r"){
-            if(args.length < 11){
-                ErrorClass.WrongNumberOfArguments("Not enough arguments given");
-            } else if(args.length > 11){
-                ErrorClass.WrongNumberOfArguments("Too many arguments given");
-            } else {
-                int n = Integer.parseInt(args[1]); // Number of nodes in the graph
-                int a = Integer.parseInt(args[2]);  // the nest node
-                int n1 = Integer.parseInt(args[3]); // weight of traversing an edge
-                float alpha = Integer.parseInt(args[4]); // parameter concerning the ant movements
-                float beta = Integer.parseInt(args[5]); // parameter concerning the ant movements
-                float delta = Integer.parseInt(args[6]);    // parameter concerning the ant movements
-                float eta = Integer.parseInt(args[7]);  // parameter concerning the pheromone evaporation
-                float rho = Integer.parseInt(args[8]);  // parameter concerning the pheromone evaporation
-                float gamma = Integer.parseInt(args[9]);    // parameter concerning pheromone level
-                int nu = Integer.parseInt(args[10]);    // ant colony size
-                float tau = Integer.parseInt(args[11]); //final instant of the simulation
-            }
-        } else if(args[0] == "-f"){
-            if(args.length > 1){
-                ErrorClass.WrongNumberOfArguments("Too many arguments given");
-            } else if(args.length < 1){
-                ErrorClass.WrongNumberOfArguments("Not enough arguments given");
-            } else {
-                String inputFile = args[1];
-                
-                try(BufferedReader reader = new BufferedReader(new FileReader(inputFile));){
-                    String line = reader.readLine();
-                    if(line != null){
-                        String[] variablesString = line.split(" ");
-                        if(variablesString.length < 10){
-                            ErrorClass.WrongNumberOfArguments("Not enough arguments given");
-                        } else if(variablesString.length > 10){
-                            ErrorClass.WrongNumberOfArguments("Too many arguments given");
-                        } else {
-                            int n = Integer.parseInt(variablesString[0]); // Number of nodes in the graph
-                            int a = Integer.parseInt(variablesString[1]);  // the nest node
-                            int n1 = Integer.parseInt(variablesString[2]); // weight of traversing an edge
-                            float alpha = Integer.parseInt(variablesString[3]); // parameter concerning the ant movements
-                            float beta = Integer.parseInt(variablesString[4]); // parameter concerning the ant movements
-                            float delta = Integer.parseInt(variablesString[5]);    // parameter concerning the ant movements
-                            float eta = Integer.parseInt(variablesString[6]);  // parameter concerning the pheromone evaporation
-                            float rho = Integer.parseInt(variablesString[7]);  // parameter concerning the pheromone evaporation
-                            float gamma = Integer.parseInt(variablesString[8]);    // parameter concerning pheromone level
-                            int nu = Integer.parseInt(variablesString[9]);    // ant colony size
-                            float tau = Integer.parseInt(variablesString[10]); //final instant of the simulation
-                        }
-                    } else {
-                        System.out.println("File is empty");
-                        System.exit(0);
-                    }
-                } catch(IOException e){
-                    System.out.println("Error reading file");
-                }
-            }
+    public static void readingMode(String mode){
+        if(mode.contains("-r")){
+            readingMode = 0;
+        } else if(mode.contains("-f")){
+            readingMode = 1;
+        } else {
+            ErrorClass.CommandNotFound("Command not found", mode);
+            System.exit(0);
         }
+    }
+
+    public static int getReadingMode(){
+        return readingMode;
+    }
+
+    
+    public static void readParameters(String[] args){
+        n = Integer.parseInt(args[1]);
+        a = Integer.parseInt(args[2]);
+        n1 = Integer.parseInt(args[3]);
+        alpha = Float.parseFloat(args[4]);
+        beta = Float.parseFloat(args[5]);
+        delta = Float.parseFloat(args[6]);
+        eta = Float.parseFloat(args[7]);
+        rho = Float.parseFloat(args[8]);
+        gamma = Float.parseFloat(args[9]);
+        nu = Integer.parseInt(args[10]);
+        tau = Float.parseFloat(args[11]);
     }
 }

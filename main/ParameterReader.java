@@ -49,4 +49,26 @@ public class ParameterReader {
         nu = Integer.parseInt(args[10]);
         tau = Float.parseFloat(args[11]);
     }
+
+    public static void readInputFile(String inputFile){
+        try(BufferedReader br = new BufferedReader(new FileReader(inputFile))){
+            String line;
+            while((line = br.readLine()) != null){
+                String[] parameters = line.split(" ");
+                n = Integer.parseInt(parameters[1]);
+                n1 = Integer.parseInt(parameters[2]);
+                alpha = Float.parseFloat(parameters[3]);
+                beta = Float.parseFloat(parameters[4]);
+                delta = Float.parseFloat(parameters[5]);
+                eta = Float.parseFloat(parameters[6]);
+                rho = Float.parseFloat(parameters[7]);
+                gamma = Float.parseFloat(parameters[8]);
+                nu = Integer.parseInt(parameters[9]);
+                tau = Float.parseFloat(parameters[10]);
+            }
+        } catch(IOException e){
+            System.out.println("Error reading file");
+            System.exit(0);
+        }
+    }
 }

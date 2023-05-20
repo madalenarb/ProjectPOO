@@ -12,8 +12,9 @@ public class Main{
     public static void main(String[] args){
         ParameterReader.readingMode(args[0]);
         if(ParameterReader.getReadingMode() == 0){
-                ParameterReader.readParameters(args);
-        
+            ParameterReader.readParameters(args);
+        } else if(ParameterReader.getReadingMode() == 1){
+            
         }
     }
 }

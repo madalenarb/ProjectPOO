@@ -4,12 +4,14 @@ public class ErrorClass {
     public static void CommandNotFound(String message, String command){
         System.out.println(cmdTextFormatter.format("(!!!) WARNING " + message + ": " + command, "RED") + "\n" +
         cmdTextFormatter.format("Correct usage: ", "GREEN"));
+        System.exit(0);
     }
 
     public static void WrongNumberOfArguments(String message){
         System.out.println(cmdTextFormatter.format("(!!!) WARNING " + message, "RED") + "\n"
          + cmdTextFormatter.format("Correct usage: ", "GREEN") + "\n"
          + CorrectUsage());
+        System.exit(0);
     }
 
     public static String CorrectUsage(){

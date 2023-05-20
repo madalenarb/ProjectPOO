@@ -45,6 +45,35 @@ public class ParameterReader {
                 ErrorClass.WrongNumberOfArguments("Not enough arguments given");
             } else {
                 String inputFile = args[1];
+                
+                try(BufferedReader reader = new BufferedReader(new FileReader(inputFile));){
+                    String line = reader.readLine();
+                    if(line != null){
+                        String[] variablesString = line.split(" ");
+                        if(variablesString.length < 10){
+                            ErrorClass.WrongNumberOfArguments("Not enough arguments given");
+                        } else if(variablesString.length > 10){
+                            ErrorClass.WrongNumberOfArguments("Too many arguments given");
+                        } else {
+                            int n = Integer.parseInt(variablesString[0]); // Number of nodes in the graph
+                            int a = Integer.parseInt(variablesString[1]);  // the nest node
+                            int n1 = Integer.parseInt(variablesString[2]); // weight of traversing an edge
+                            float alpha = Integer.parseInt(variablesString[3]); // parameter concerning the ant movements
+                            float beta = Integer.parseInt(variablesString[4]); // parameter concerning the ant movements
+                            float delta = Integer.parseInt(variablesString[5]);    // parameter concerning the ant movements
+                            float eta = Integer.parseInt(variablesString[6]);  // parameter concerning the pheromone evaporation
+                            float rho = Integer.parseInt(variablesString[7]);  // parameter concerning the pheromone evaporation
+                            float gamma = Integer.parseInt(variablesString[8]);    // parameter concerning pheromone level
+                            int nu = Integer.parseInt(variablesString[9]);    // ant colony size
+                            float tau = Integer.parseInt(variablesString[10]); //final instant of the simulation
+                        }
+                    } else {
+                        System.out.println("File is empty");
+                        System.exit(0);
+                    }
+                } catch(IOException e){
+                    System.out.println("Error reading file");
+                }
             }
         }
     }

@@ -1,20 +1,24 @@
 package main;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-
-
-// separar main num outro package 
-// colocar o readFile no main package como uma classe separada
-
 public class Main{
     public static void main(String[] args){
         ParameterReader.readingMode(args[0]);
         if(ParameterReader.getReadingMode() == 0){
-            ParameterReader.readParameters(args);
+            if(args.length < 12){
+                ErrorClass.CommandNotFound("Too few arguments", args[0]);
+            } else if(args.length > 12){
+                ErrorClass.CommandNotFound("Too many arguments", args[0]);
+            } else {
+                ParameterReader.readParameters(args);
+            }
         } else if(ParameterReader.getReadingMode() == 1){
-            
+            if(args.length < 2){
+                ErrorClass.CommandNotFound("Too few arguments", args[0]);
+            } else if(args.length > 2){
+                ErrorClass.CommandNotFound("Too many arguments", args[0]);
+            } else {
+                ParameterReader.readInputFile(args[1]);
+            }
         }
     }
 }

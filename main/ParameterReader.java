@@ -4,22 +4,46 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+/*
+ * This class is used to read the parameters from the command line or from a file
+ * 
+ * @param readingMode: 0 for -r, 1 for -f
+ * @param n: number of nodes in the graph
+ * @param a: the nest node
+ * @param n1: weight of traversing an edge
+ * @param alpha: parameter concerning the ant movements
+ * @param beta: parameter concerning the ant movements
+ * @param delta: parameter concerning the ant movements
+ * @param eta: parameter concerning the pheromone evaporation
+ * @param rho: parameter concerning the pheromone evaporation
+ * @param gamma: parameter concerning the pheromone evaporation
+ * @param nu: ant colony size
+ * @param tau: final instant of the simulation
+ * 
+ * @return: the parameters
+ * 
+ */
 public class ParameterReader {
     static int readingMode; // 0 for -r, 1 for -f
-    static int n; // Number of nodes in the graph
-    static int a;  // the nest node
-    static int n1; // weight of traversing an edge
-    static float alpha; // parameter concerning the ant movements
-    static float beta; // parameter concerning the ant movements
-    static float delta;    // parameter concerning the ant movements
-    static float eta;  // parameter concerning the pheromone evaporation
-    static float rho;  // parameter concerning the pheromone evaporation
-    static float gamma;    // parameter concerning pheromone level
-    static int nu;    // ant colony size
-    static float tau; //final instant of the simulation
+    static int n; 
+    static int a; 
+    static int n1; 
+    static float alpha; 
+    static float beta;
+    static float delta;    
+    static float eta;  
+    static float rho;  
+    static float gamma;    
+    static int nu;   
+    static float tau; 
 
     String inputFile;
 
+    /**
+     * Sets the reading mode based on the provided mode argument.
+     * 
+     * @param mode the mode argument (-r or -f)
+     */
     public static void readingMode(String mode){
         if(mode.contains("-r")){
             readingMode = 0;
@@ -31,11 +55,20 @@ public class ParameterReader {
         }
     }
 
+    /**
+     * Returns the reading mode.
+     * 
+     * @return the reading mode (0 for -r, 1 for -f)
+     */
     public static int getReadingMode(){
         return readingMode;
     }
 
-    
+    /**
+     * Reads the parameters from the command line arguments.
+     * 
+     * @param args the command line arguments
+     */
     public static void readParameters(String[] args){
         n = Integer.parseInt(args[1]);
         a = Integer.parseInt(args[2]);
@@ -50,6 +83,11 @@ public class ParameterReader {
         tau = Float.parseFloat(args[11]);
     }
 
+    /**
+     * Reads the parameters from the specified input file.
+     * 
+     * @param inputFile the file from which the parameters are read
+     */
     public static void readInputFile(String inputFile){
         try(BufferedReader br = new BufferedReader(new FileReader(inputFile))){
             String line;

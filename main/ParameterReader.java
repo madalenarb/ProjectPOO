@@ -36,6 +36,7 @@ public class ParameterReader {
     static float gamma;    
     static int nu;   
     static float tau; 
+    static int[][] matrix;
 
     String inputFile;
 
@@ -89,24 +90,53 @@ public class ParameterReader {
      * @param inputFile the file from which the parameters are read
      */
     public static void readInputFile(String inputFile){
+        matrix = null;
         try(BufferedReader br = new BufferedReader(new FileReader(inputFile))){
-            String line;
-            while((line = br.readLine()) != null){
-                String[] parameters = line.split(" ");
-                n = Integer.parseInt(parameters[1]);
-                n1 = Integer.parseInt(parameters[2]);
-                alpha = Float.parseFloat(parameters[3]);
-                beta = Float.parseFloat(parameters[4]);
-                delta = Float.parseFloat(parameters[5]);
-                eta = Float.parseFloat(parameters[6]);
-                rho = Float.parseFloat(parameters[7]);
-                gamma = Float.parseFloat(parameters[8]);
-                nu = Integer.parseInt(parameters[9]);
-                tau = Float.parseFloat(parameters[10]);
+            int lineCount = 0;
+            String line = br.readLine();
+
+
+            while(line != null){
+                if(lineCount == 0){
+                    String[] parameters = line.split(" ");
+                    if(parameters.length != 10){
+                        ErrorClass.WrongNumberOfArguments("Wrong number of arguments in the input file, it must be 11");
+                    }
+                    n = Integer.parseInt(parameters[0]);
+                    n1 = Integer.parseInt(parameters[1]);
+                    alpha = Float.parseFloat(parameters[2]);
+                    beta = Float.parseFloat(parameters[3]);
+                    delta = Float.parseFloat(parameters[4]);
+                    eta = Float.parseFloat(parameters[5]);
+                    rho = Float.parseFloat(parameters[6]);
+                    gamma = Float.parseFloat(parameters[7]);
+                    nu = Integer.parseInt(parameters[8]);
+                    tau = Float.parseFloat(parameters[9]);
+                    matrix = new int[n][n];
+                } else {
+                    String[] weights = line.split(" ");
+                    if(weights.length != n){
+                        ErrorClass.WrongNumberOfArguments("Wrong number of edges in the input file, it must be " + weights.length + " instead of " + n);
+                    }
+                    for(int i = 0; i < n; i++){
+                        matrix[lineCount - 1][i] = Integer.parseInt(weights[i]);
+                    }
+
+                }
+                lineCount++;
+                line = br.readLine();
             }
-        } catch(IOException e){
-            System.out.println("Error reading file");
-            System.exit(0);
+        } catch (IOException e){
+            System.err.println("Error reading file" + e.getMessage());
         }
+        //Print matrix
+        System.out.println("size" + n + "x" + n + "\n");
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < n; j++){
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        } 
     }
 }
+

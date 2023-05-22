@@ -11,10 +11,6 @@ public class WeightedGraph {
         this.size = size;
     }
 
-    public void buildWeightedGraph(int i, int j, int weight) {
-        adjacencyMatrix[i][j] = weight;
-    }
-
     public void printAdjacencyMatrix() {
         System.out.println("Adjacency Matrix:");
         for(int i = 0; i < adjacencyMatrix.length; i++) {

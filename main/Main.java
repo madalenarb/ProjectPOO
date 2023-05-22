@@ -19,6 +19,7 @@ public class Main{
                 ErrorClass.CommandNotFound("Too many arguments", args[0]);
             } else {
                 ParameterReader.readInputFile(args[1]);
+                WeightedGraph graph = new WeightedGraph(ParameterReader.matrix, ParameterReader.n);
                 graph.printAdjacencyMatrix();
             }
         }

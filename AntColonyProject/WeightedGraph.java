@@ -4,9 +4,17 @@ import java.util.Arrays;
 
 public class WeightedGraph {
     protected int[][] adjacencyMatrix;
-    public WeightedGraph(int adjacencyMatrix[][]) {
+    int size;
+
+    public WeightedGraph(int[][] adjacencyMatrix, int size) {
         this.adjacencyMatrix = adjacencyMatrix;
+        this.size = size;
     }
+
+    public void buildWeightedGraph(int i, int j, int weight) {
+        adjacencyMatrix[i][j] = weight;
+    }
+
     public void printAdjacencyMatrix() {
         System.out.println("Adjacency Matrix:");
         for(int i = 0; i < adjacencyMatrix.length; i++) {
@@ -20,5 +28,7 @@ public class WeightedGraph {
     public int getWeight(int i, int j) {
         return adjacencyMatrix[i][j];
     }
+
+
     
 }

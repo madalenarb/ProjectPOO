@@ -1,4 +1,5 @@
 package main;
+import AntColonyProject.WeightedGraph;
 
 public class Main{
     public static void main(String[] args){
@@ -18,7 +19,9 @@ public class Main{
                 ErrorClass.CommandNotFound("Too many arguments", args[0]);
             } else {
                 ParameterReader.readInputFile(args[1]);
+                graph.printAdjacencyMatrix();
             }
         }
     }
+
 }

@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import AntColonyProject.WeightedGraph;
+
 /*
  * This class is used to read the parameters from the command line or from a file
  * 
@@ -130,6 +132,7 @@ public class ParameterReader {
             System.err.println("Error reading file" + e.getMessage());
         }
         //Print matrix
+
         System.out.println("size" + n + "x" + n + "\n");
         for(int i = 0; i < n; i++){
             for(int j = 0; j < n; j++){

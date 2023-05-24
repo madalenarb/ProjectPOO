@@ -4,8 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-import AntColonyProject.WeightedGraph;
-
 /*
  * This class is used to read the parameters from the command line or from a file
  * 
@@ -117,12 +115,19 @@ public class ParameterReader {
                     matrix = new int[n][n];
                 } else {
                     String[] weights = line.split(" ");
-                    if(weights.length != n){
-                        ErrorClass.WrongNumberOfArguments("Wrong number of edges in the input file, it must be " + weights.length + " instead of " + n);
-                    }
-                    for(int i = 0; i < n; i++){
-                        matrix[lineCount - 1][i] = Integer.parseInt(weights[i]);
-                    }
+                        if(weights.length != n){
+                            ErrorClass.WrongNumberOfArguments("Wrong number of edges in the input file, it must be " + weights.length + " instead of " + n);
+                        }
+                        for(int i = 0; i < n; i++){
+                            try{
+                                matrix[lineCount - 1][i] = Integer.parseInt(weights[i]);
+                                //System.out.println(line);
+                            } catch (NumberFormatException e){
+                                System.err.println("Error parsing the weight of the edge " + lineCount + " " + i + " " + e.getMessage());
+                                System.out.println("The matrix weights must be integers");
+                                System.exit(0);
+                            }
+                        }
 
                 }
                 lineCount++;

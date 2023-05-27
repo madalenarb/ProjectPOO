@@ -30,3 +30,6 @@ $ git commit -m "Commit message"
 
 # Push the changes to the specified branch
 $ git push origin <branch_name>
+
+# See branches
+$ git branch

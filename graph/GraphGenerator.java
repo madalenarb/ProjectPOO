@@ -63,7 +63,12 @@ public class GraphGenerator {
     
     public void fillGraphFile(String w[], int linecnt) {
     	for(int i = 0; i < graph[linecnt-1].length; i++){
-    		this.setWeight(linecnt - 1, i, Integer.parseInt(w[i]));
+            try{
+    		    this.setWeight(linecnt - 1, i, Integer.parseInt(w[i]));
+            } catch (NumberFormatException e){
+                System.err.println("Wrong number format " + e.getMessage());
+                System.exit(0);
+            }
             //graph[linecnt-1][i] = Integer.parseInt(w[i]);
         }
     }

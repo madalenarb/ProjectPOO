@@ -1,7 +1,7 @@
 package main;
 
 import java.io.BufferedReader;
-import graph.GraphGenerator;
+import graph.GraphFacade;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -25,7 +25,7 @@ import java.io.IOException;
  * 
  */
 
-class ParameterReader {
+public class ParameterReader {
 	static int readingMode; // 0 for -r, 1 for -f
     static int n; 
     static int a; 
@@ -38,7 +38,7 @@ class ParameterReader {
     static float gamma;    
     static int nu;   
     static float tau; 
-    static GraphGenerator g;
+    static GraphFacade g;
     // String inputFile;
 
     /**
@@ -65,6 +65,34 @@ class ParameterReader {
     public static int getReadingMode(){
         return readingMode;
     }
+    
+    public static int getN() {
+    	return n;
+    }
+    
+    public static int getNest() {
+    	return n1;
+    }
+    
+    public static float getAlpha() {
+    	return alpha;
+    }
+    
+    public static float getBeta() {
+    	return beta;
+    }
+    
+    public static float getRho() {
+    	return rho;
+    }
+    
+    public static float getGamma() {
+    	return gamma;
+    }
+    
+    public static GraphFacade getGraphFacade() {
+    	return g;
+    }
 
     /**
      * Reads the parameters from the command line arguments.
@@ -72,24 +100,19 @@ class ParameterReader {
      * @param args the command line arguments
      */
     public static void readParameters(String[] args){
-        try{
-            n = Integer.parseInt(args[1]);
-            a = Integer.parseInt(args[2]);
-            n1 = Integer.parseInt(args[3]);
-            alpha = Float.parseFloat(args[4]);
-            beta = Float.parseFloat(args[5]);
-            delta = Float.parseFloat(args[6]);
-            eta = Float.parseFloat(args[7]);
-            rho = Float.parseFloat(args[8]);
-            gamma = Float.parseFloat(args[9]);
-            nu = Integer.parseInt(args[10]);
-            tau = Float.parseFloat(args[11]);
-            g = new GraphGenerator(n);
-        } catch (NumberFormatException e){
-            System.err.println("Wrong number format" + e.getMessage());
-            System.exit(0);
-        }
-        g.fillGraphNoFile(n, a);
+        n = Integer.parseInt(args[1]);
+        a = Integer.parseInt(args[2]);
+        n1 = Integer.parseInt(args[3]);
+        alpha = Float.parseFloat(args[4]);
+        beta = Float.parseFloat(args[5]);
+        delta = Float.parseFloat(args[6]);
+        eta = Float.parseFloat(args[7]);
+        rho = Float.parseFloat(args[8]);
+        gamma = Float.parseFloat(args[9]);
+        nu = Integer.parseInt(args[10]);
+        tau = Float.parseFloat(args[11]);
+        g = new GraphFacade(n);
+        g.fillGraphReadMode(n, a);
     }
 
     /**
@@ -109,37 +132,30 @@ class ParameterReader {
                     if(parameters.length != 10){
                         ErrorClass.WrongNumberOfArguments("Wrong number of arguments in the input file, it must be 11");
                     }
-                    try{
-                        n = Integer.parseInt(parameters[0]);
-                        n1 = Integer.parseInt(parameters[1]);
-                        alpha = Float.parseFloat(parameters[2]);
-                        beta = Float.parseFloat(parameters[3]);
-                        delta = Float.parseFloat(parameters[4]);
-                        eta = Float.parseFloat(parameters[5]);
-                        rho = Float.parseFloat(parameters[6]);
-                        gamma = Float.parseFloat(parameters[7]);
-                        nu = Integer.parseInt(parameters[8]);
-                        tau = Float.parseFloat(parameters[9]);
-                    } catch (NumberFormatException e){
-                        System.err.println("Wrong number format" + e.getMessage());
-                        System.exit(0);
-                    }
-                    
+                    n = Integer.parseInt(parameters[0]);
+                    n1 = Integer.parseInt(parameters[1]);
+                    alpha = Float.parseFloat(parameters[2]);
+                    beta = Float.parseFloat(parameters[3]);
+                    delta = Float.parseFloat(parameters[4]);
+                    eta = Float.parseFloat(parameters[5]);
+                    rho = Float.parseFloat(parameters[6]);
+                    gamma = Float.parseFloat(parameters[7]);
+                    nu = Integer.parseInt(parameters[8]);
+                    tau = Float.parseFloat(parameters[9]);
                     // Create graph with Hamiltonian cycle
-                    g = new GraphGenerator(n);
+                    g = new GraphFacade(n);
                 } else {
                     String[] weights = line.split(" ");
                     if(weights.length != n){
                         ErrorClass.WrongNumberOfArguments("Wrong number of edges in the input file, it must be " + weights.length + " instead of " + n);
                     }
-                    g.fillGraphFile(weights, lineCount);
+                    g.fillGraphFileMode(weights, lineCount);
                 }
                 lineCount++;
                 line = br.readLine();
             }
         } catch (IOException e){
             System.err.println("Error reading file" + e.getMessage());
-            System.exit(0);
         }
     }
     
@@ -156,6 +172,6 @@ class ParameterReader {
     	System.out.println("\t\t\t" + nu + " : ant colony size");
     	System.out.println("\t\t\t" + tau + " : final instant");
     	System.out.println("\twith graph:");
-    	g.printGraph();
+    	g.printAntGraph();
     }
 }

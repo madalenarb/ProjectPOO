@@ -16,7 +16,7 @@ public class Cycle {
     }
 	
 	public void addNode(int nod) {
-        cycle.add(nod);
+		cycle.add(nod);
     }
 	
 	public int getLastNode() {
@@ -24,7 +24,7 @@ public class Cycle {
 	}
 	
 	public int getCurrentCycleWeight() {
-    	return currentCycleWeight;
+		return currentCycleWeight;
     }
     
     public void incrementCurrentCycleWeight(int increment) {

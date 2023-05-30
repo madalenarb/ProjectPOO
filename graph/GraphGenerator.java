@@ -3,7 +3,7 @@ package graph;
 import java.util.Arrays;
 import java.util.Random;
 
-public class GraphGenerator {
+class GraphGenerator {
 	
 	protected int[][] graph; // Graph
 	
@@ -63,12 +63,7 @@ public class GraphGenerator {
     
     public void fillGraphFile(String w[], int linecnt) {
     	for(int i = 0; i < graph[linecnt-1].length; i++){
-            try{
-    		    this.setWeight(linecnt - 1, i, Integer.parseInt(w[i]));
-            } catch (NumberFormatException e){
-                System.err.println("Wrong number format " + e.getMessage());
-                System.exit(0);
-            }
+    		this.setWeight(linecnt - 1, i, Integer.parseInt(w[i]));
             //graph[linecnt-1][i] = Integer.parseInt(w[i]);
         }
     }

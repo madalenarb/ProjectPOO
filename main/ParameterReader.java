@@ -93,6 +93,10 @@ public class ParameterReader {
     public static int getNu() {
     	return nu;
     }
+
+    public static float getTau() {
+    	return tau;
+    }
     
     public static GraphFacade getGraphFacade() {
     	return g;

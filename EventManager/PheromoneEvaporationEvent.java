@@ -2,26 +2,27 @@ package EventManager;
 
 import graph.GraphFacade;
 
-public class PheromoneEvaporation implements Event{
+public class PheromoneEvaporationEvent implements Event{
     private double time;
     private GraphFacade graph;
-    private int StartNode;
-    private int EndNode;
+    private int startNode;
+    private int endNode;
     private double evaporationRate;
+    
 
 
 
-    public PheromoneEvaporation(double time, GraphFacade graph, int StartNode, int EndNode, double evaporationRate) {
+    public PheromoneEvaporationEvent(double time, GraphFacade graph, int startNode, int endNode, double evaporationRate) {
         this.time = time;
         this.graph = graph;
-        this.StartNode = StartNode;
-        this.EndNode = EndNode;
+        this.startNode = startNode;
+        this.endNode = endNode;
         this.evaporationRate = evaporationRate;
     }
 
     @Override
     public void executeEvent() {
-        graph.reducePheromones(StartNode, EndNode);
+        graph.reducePheromones(startNode, endNode);
     }
 
     @Override

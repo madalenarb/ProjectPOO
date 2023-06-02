@@ -1,6 +1,6 @@
 package EventManager;
 
-public class PEC{
+public class EventManagerClass{
     int time;
     Event[] events;
     int timeout;

@@ -1,5 +1,6 @@
 package EventManager;
 
-public class Event {
-    
+public interface Event {
+    void executeEvent();
+    double getEventTime();
 }

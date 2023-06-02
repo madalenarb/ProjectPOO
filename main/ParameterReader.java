@@ -89,6 +89,10 @@ public class ParameterReader {
     public static float getGamma() {
     	return gamma;
     }
+
+    public static int getNu() {
+    	return nu;
+    }
     
     public static GraphFacade getGraphFacade() {
     	return g;

@@ -3,6 +3,9 @@ package main;
 //import java.io.PrintStream;
 //import java.io.UnsupportedEncodingException;
 
+import ant.AntColony;
+import cycle.Cycle;
+
 public class Main {
 	public static void main(String[] args){
 		/*try {
@@ -12,7 +15,11 @@ public class Main {
             // Handle the exception
             e.printStackTrace();
         }*/
-        ParameterReader.readingMode(args[0]);
+        try{
+            ParameterReader.readingMode(args[0]);
+        } catch(ArrayIndexOutOfBoundsException e){
+            ErrorClass.CommandNotFound("Too few arguments", "java -jar project.jar");
+        }
         if(ParameterReader.getReadingMode() == 0){
             if(args.length < 12){
                 ErrorClass.CommandNotFound("Too few arguments", args[0]);
@@ -34,5 +41,13 @@ public class Main {
             }
         }
         ParameterReader.printParameters();
+        AntColony antColony = new AntColony();
+        Cycle cycle = new Cycle();
+        cycle.addNode(ParameterReader.getNest());
+        cycle.incrementCurrentCycleWeight(2);
+        System.out.println("Last Node in Cycle:"+cycle.getLastNode());
+        System.out.println("Current Cycle Weight:"+cycle.getCurrentCycleWeight());
+
+        antColony.addCycleToPQ(cycle);
     }
 }

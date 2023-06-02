@@ -20,6 +20,9 @@ public class Cycle {
     }
 	
 	public int getLastNode() {
+		if(cycle.isEmpty()) {
+			return -1;
+		}
 		return cycle.getLast();
 	}
 	
@@ -64,6 +67,11 @@ public class Cycle {
 		}
 	}
 	
+	// See if the cycle is complete
+	public boolean isComplete() {
+		return getLastNode() == ParameterReader.getNest();
+	}
+
 	public void printElements() {
     	System.out.print("{");
     	Iterator<Integer> iterator = cycle.iterator();
@@ -77,4 +85,6 @@ public class Cycle {
         System.out.print("}:" + currentCycleWeight);
         //System.out.println();
     }
+
+	
 }

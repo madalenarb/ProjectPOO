@@ -36,7 +36,7 @@ public class GraphFacade {
 		pheromoneMap.increasePheromoneLevel(node1, node2, increment);
 	}
 	
-	public void reducePheromones() {
-		pheromoneMap.reducePheromoneLevel(ParameterReader.getRho());
+	public void reducePheromones(int startNode, int endNode) {
+		pheromoneMap.reducePheromoneLevel(ParameterReader.getRho(), startNode, endNode);
 	}
 }

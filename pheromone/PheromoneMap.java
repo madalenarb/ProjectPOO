@@ -2,7 +2,7 @@ package pheromone;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Iterator;
+//import java.util.Iterator;
 
 public class PheromoneMap {
 	private Map<int[], Edge> pheromoneMap;
@@ -49,26 +49,23 @@ public class PheromoneMap {
         }
     }
 	
-	public void reducePheromoneLevel(float decrement) {
+	public void reducePheromoneLevel(float decrement, int startNode, int endNode) {
 		
 		// Add entries to the pheromoneMap
-		Iterator<Map.Entry<int[], Edge>> iterator = pheromoneMap.entrySet().iterator();
 		
-		while (iterator.hasNext()) {
-		    Map.Entry<int[], Edge> entry = iterator.next();
-		    Edge value = entry.getValue();
+		int[] key = {startNode, endNode};
+        Edge value = pheromoneMap.get(key);
 
-		    float newPheromoneLevel = value.getPheromoneLevel() - decrement;
-		    
-		    if(newPheromoneLevel > 0) {
-		    	// Modify the value associated with the key
-		    	value.setPheromoneLevel(newPheromoneLevel);    
-		    }
-		    
-		    // Remove entries that do not have pheromones
-		    else {
-		        iterator.remove(); // Remove the entry from the pheromoneMap
-		    }
+		float newPheromoneLevel = value.getPheromoneLevel() - decrement;
+		
+		if(newPheromoneLevel > 0) {
+			// Modify the value associated with the key
+			value.setPheromoneLevel(newPheromoneLevel);    
+		}
+		
+		// Remove entries that do not have pheromones
+		else {
+			pheromoneMap.remove(key); // Remove the entry from the pheromoneMap
 		}
 
 	}

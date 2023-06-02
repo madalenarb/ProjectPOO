@@ -55,7 +55,7 @@ public class Cycle {
 	
 	public void layP() {
 		GraphFacade gr = ParameterReader.getGraphFacade();
-		float p = (ParameterReader.getGamma()*(currentCycleWeight - gr.getWeight(cycle.getLast(), ParameterReader.getNest())))/currentCycleWeight;
+		double p = (ParameterReader.getGamma()*(currentCycleWeight - gr.getWeight(cycle.getLast(), ParameterReader.getNest())))/currentCycleWeight;
 		Iterator<Integer> iterator = cycle.iterator();
 		Integer previousNode = null;
 		while (iterator.hasNext()) {

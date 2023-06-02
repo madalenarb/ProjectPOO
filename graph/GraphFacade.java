@@ -32,11 +32,13 @@ public class GraphFacade {
 		antGraph.fillGraphNoFile(n, maxW);
 	}
 	
-	public void increaseEdgePheromones(int node1, int node2, float increment) {
+	public void increaseEdgePheromones(int node1, int node2, double increment) {
 		pheromoneMap.increasePheromoneLevel(node1, node2, increment);
 	}
 	
 	public void reducePheromones(int startNode, int endNode) {
 		pheromoneMap.reducePheromoneLevel(ParameterReader.getRho(), startNode, endNode);
 	}
+
+	//create a getTotalWeight method
 }

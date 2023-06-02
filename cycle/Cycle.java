@@ -61,7 +61,9 @@ public class Cycle {
 		while (iterator.hasNext()) {
 			Integer currentNode = iterator.next();
 			if(previousNode != null) {
-				gr.increaseEdgePheromones(previousNode,currentNode, p);
+				gr.increaseEdgePheromones(previousNode,currentNode, p); 
+				// temos de verificar se havia phLevel antes de incrementar o phLevel, e se não havia temos de criar um novo Evento de Evaporação
+				// maybe no eventos??
 			}
 			previousNode = currentNode;
 		}

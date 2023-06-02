@@ -39,25 +39,13 @@ class Ant {
     public void layPheromones() {
     	currentCycle.layP();
     }
-    
-	public ArrayList<Integer> getAdjNodes(int currentNode) {
-		ArrayList<Integer> adjNodes = new ArrayList<>();
-		GraphFacade g = ParameterReader.getGraphFacade();
-		int n = ParameterReader.getN();
-		for(int i = 0; i < n; i++) {
-			if(g.getWeight(currentNode, i) != 0) {
-				adjNodes.add(i);
-			}
-		}
-		return adjNodes;
+
+	public void removeVisitedNodesfromCycle(int currentNode, ArrayList<Integer> visitedN) {
+		Random randomN = new Random();
+		int r = randomN.nextInt(visitedN.size());
+		currentCycle.removeCycle(visitedN.get(r));
 	}
 
-	public void removeVisitedNodesfromCycle(int currentNode, ArrayList<Integer> adjNodes) {
-		Random randomN = new Random();
-		int r = randomN.nextInt(adjNodes.size());
-		currentCycle.removeCycle(adjNodes.get(r));
-		currentCycle.addNode(adjNodes.get(r));
-	}
 	public double getNodes(GraphFacade g, int currentNode, ArrayList<Integer> visitedN, Map<Integer,Double> probabilityList){
 		double sumProbabilities = 0;
 		for(int i = 0; i < ParameterReader.getN(); i++){
@@ -82,26 +70,26 @@ class Ant {
 		return sumProbabilities;
 	}
 
-	public void handleNonVisitedNodes(GraphFacade g, int currentN, ArrayList<Integer> visitedN, Map<Integer, Double> probabilityList, ArrayList<Integer> adjNodes, Double sumProbabilities){
+	public void handleNonVisitedNodes(GraphFacade g, int currentN, ArrayList<Integer> visitedN, Map<Integer, Double> probabilityList, Double sumProbabilities){
 		if(probabilityList.isEmpty()) {
 			// The nodes that haven't been visited aren't adjacent to the node
-			removeVisitedNodesfromCycle(currentN, adjNodes);
+			removeVisitedNodesfromCycle(currentN, visitedN);
 		} else {
-			selectNodeBasedonProbability(g, currentN, probabilityList, sumProbabilities);
+			InverseTranformSampling(g, currentN, probabilityList, sumProbabilities);
 		}
 	}
 
-	public void handleAllVisitedNodes(GraphFacade g, ArrayList<Integer> visitedN, ArrayList<Integer> adjNodes, int currentNode){
+	public void handleAllVisitedNodes(GraphFacade g, ArrayList<Integer> visitedN, int currentNode){
 		if(g.getWeight(currentCycle.getLastNode(), ParameterReader.getNest()) != 0){
 			currentCycle.incrementCurrentCycleWeight(g.getWeight(currentCycle.getLastNode(), ParameterReader.getNest()));
 		} else {
 			// If there isn't, it randomly chooses any adjacent node with a uniform distribution, it should update its 
 			// path by removing the cycle created in the last move
-			removeVisitedNodesfromCycle(currentNode, adjNodes);
+			removeVisitedNodesfromCycle(currentNode, visitedN);
 		}
 	}
 
-	public void selectNodeBasedonProbability(GraphFacade g, int currentN, Map<Integer, Double> probabilityList, Double sumProbabilities){
+	public void InverseTranformSampling(GraphFacade g, int currentN, Map<Integer, Double> probabilityList, Double sumProbabilities){
 		Random random = new Random();
 		double u = random.nextDouble();
 		double cumulativeProbability = 0;
@@ -125,14 +113,13 @@ class Ant {
     	double sumProbabilities = 0;
     	ArrayList<Integer> visitedN = new ArrayList<>();
     	int currentN = currentCycle.getLastNode();
-		ArrayList<Integer> adjNodes = getAdjNodes(currentN);
     	sumProbabilities = getNodes(g, currentN, visitedN, probabilityList);
     	
     	// There are still nodes to visit
     	if(AreThereUnvisitedNodes()) {
-    		handleNonVisitedNodes(g, currentN, visitedN, probabilityList, adjNodes, sumProbabilities);
+    		handleNonVisitedNodes(g, currentN, visitedN, probabilityList, sumProbabilities);
     	} else {
-			handleAllVisitedNodes(g, visitedN, adjNodes, currentN);
+			handleAllVisitedNodes(g, visitedN, currentN);
     	}
 		return AreThereUnvisitedNodes();
     }

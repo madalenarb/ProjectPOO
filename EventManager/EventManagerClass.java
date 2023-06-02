@@ -1,8 +1,8 @@
 package EventManager;
 
 public class EventManagerClass{
-    int time;
+    double time;
     Event[] events;
-    int timeout;
+    float timeout;
     
 }

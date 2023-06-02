@@ -3,13 +3,11 @@ package pheromone;
 class Edge {
     private int startNode;
     private int endNode;
-    private float pheromoneLevel;
 
     // Constructor
-    Edge(int startNode, int endNode, float pheromoneLevel) {
-        this.startNode = startNode;
-        this.endNode = endNode;
-        this.pheromoneLevel = pheromoneLevel;
+    Edge(int startNode, int endNode) {
+        this.startNode = Math.min(startNode, endNode);
+        this.endNode = Math.max(startNode, endNode);
     }
 
     // Getters and setters
@@ -29,12 +27,12 @@ class Edge {
         this.endNode = endNode;
     }
 
-    float getPheromoneLevel() {
-        return pheromoneLevel;
-    }
+    // float getPheromoneLevel() {
+    //     return pheromoneLevel;
+    // }
 
-    void setPheromoneLevel(float pheromoneLevel) {
-        this.pheromoneLevel = pheromoneLevel;
-    }
+    // void setPheromoneLevel(float pheromoneLevel) {
+    //     this.pheromoneLevel = pheromoneLevel;
+    // }
 }
 

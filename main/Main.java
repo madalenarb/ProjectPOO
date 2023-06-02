@@ -18,22 +18,22 @@ public class Main {
         try{
             ParameterReader.readingMode(args[0]);
         } catch(ArrayIndexOutOfBoundsException e){
-            ErrorClass.CommandNotFound("Too few arguments", "java -jar project.jar");
+            Message.CommandNotFound("Too few arguments", "java -jar project.jar");
         }
         if(ParameterReader.getReadingMode() == 0){
             if(args.length < 12){
-                ErrorClass.CommandNotFound("Too few arguments", args[0]);
+                Message.CommandNotFound("Too few arguments", args[0]);
             } else if(args.length > 12){
-                ErrorClass.CommandNotFound("Too many arguments", args[0]);
+                Message.CommandNotFound("Too many arguments", args[0]);
             } else {
                 ParameterReader.readParameters(args);
             }
         }
         else if(ParameterReader.getReadingMode() == 1){
             if(args.length < 2){
-                ErrorClass.CommandNotFound("Too few arguments", args[0]);
+                Message.CommandNotFound("Too few arguments", args[0]);
             } else if(args.length > 2){
-                ErrorClass.CommandNotFound("Too many arguments", args[0]);
+                Message.CommandNotFound("Too many arguments", args[0]);
             } else {
                 ParameterReader.readInputFile(args[1]);
                 //WeightedGraph_di graph = new WeightedGraph_di(ParameterReader.n);

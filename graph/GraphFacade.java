@@ -16,8 +16,8 @@ public class GraphFacade {
 		return antGraph.getWeight(node1, node2);
 	}
 	
-	public float getPheromones(int node1, int node2) {
-		return pheromoneMap.getPheromone(node1, node2);
+	public double getPheromones(int node1, int node2) {
+		return pheromoneMap.getPheromoneLevel(node1, node2);
 	}
 	
 	public void printAntGraph() {

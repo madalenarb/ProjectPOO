@@ -5,62 +5,64 @@ import java.util.Map;
 //import java.util.Iterator;
 
 public class PheromoneMap {
-	private Map<int[], Edge> pheromoneMap;
+	private Map<int[], Double> pheromoneMap;
 	
 	public PheromoneMap() {
         pheromoneMap = new HashMap<>();
     }
-	
-	public void addEdge(int startNode, int endNode, float pheromoneLevel) {
-        Edge edge = new Edge(startNode, endNode, pheromoneLevel);
-        int[] key = {startNode, endNode};
-        pheromoneMap.put(key, edge);
-    }
-	
-	public void removeEdge(int startNode, int endNode) {
-        int[] key = {startNode, endNode};
-        pheromoneMap.remove(key);
-    }
-	
-	public Edge getEdge(int startNode, int endNode) {
-        int[] key = {startNode, endNode};
-        return pheromoneMap.get(key);
-    }
-	
-	public float getPheromone(int startNode, int endNode) {
-		Edge edge = getEdge(startNode, endNode);
-		float ph = 0;
-		if(edge != null) {
-			ph = edge.getPheromoneLevel();
-		}
-		return ph;
+
+	public int[] organizeNodes(int startNode, int endNode) {
+		int[] key = {startNode, endNode};
+		key[0] = Math.min(startNode, endNode);
+		key[1] = Math.max(startNode, endNode);
+		return key;
 	}
 	
-	public void increasePheromoneLevel(int startNode, int endNode, float increasePheromones) {
-        Edge edge = getEdge(startNode, endNode);
-        if (edge != null) {
-        	float newPheromoneLevel = edge.getPheromoneLevel() + increasePheromones;
-            edge.setPheromoneLevel(newPheromoneLevel);
-        }
-        else {
-        	edge = new Edge(startNode, endNode, increasePheromones);
-        	int[] key = {startNode, endNode};
-            pheromoneMap.put(key, edge);
-        }
+	public void addPheromone(int startNode, int endNode, double pheromoneLevel) {
+		int[] key = organizeNodes(startNode, endNode);
+        pheromoneMap.put(key, pheromoneLevel);
     }
 	
-	public void reducePheromoneLevel(float decrement, int startNode, int endNode) {
+	public void removePheromone(int startNode, int endNode) {
+        int[] key = organizeNodes(startNode, endNode);
+        pheromoneMap.remove(key);
+    }
+
+	public double getPheromoneLevel(int startNode, int endNode) {
+		int[] key = organizeNodes(startNode, endNode);
+		return getPheromone(key);
+	}
+	
+	public double getPheromone(int[] key) {
+        Double ph = pheromoneMap.get(key);
+		if(ph == null){
+			return 0;
+		}
+		return ph;
+    }
+	
+	public void increasePheromoneLevel(int startNode, int endNode, double increasePheromones) {
+		int[] key = organizeNodes(startNode, endNode);
+        double ph = getPheromone(key);
+		if(ph == 0){
+			pheromoneMap.put(key, increasePheromones);
+		} else {
+			pheromoneMap.replace(key, ph+increasePheromones);
+		}
+    }
+	
+	public void reducePheromoneLevel(double decrement, int startNode, int endNode) {
 		
 		// Add entries to the pheromoneMap
 		
-		int[] key = {startNode, endNode};
-        Edge value = pheromoneMap.get(key);
+		int[] key = organizeNodes(startNode, endNode);
+        double value = getPheromone(key);
 
-		float newPheromoneLevel = value.getPheromoneLevel() - decrement;
+		double newPheromoneLevel = value - decrement;
 		
 		if(newPheromoneLevel > 0) {
 			// Modify the value associated with the key
-			value.setPheromoneLevel(newPheromoneLevel);    
+			pheromoneMap.replace(key, newPheromoneLevel);
 		}
 		
 		// Remove entries that do not have pheromones
@@ -71,10 +73,10 @@ public class PheromoneMap {
 	}
 	
 	public void printEdges() {
-        for (Map.Entry<int[], Edge> entry : pheromoneMap.entrySet()) {
+        for (Map.Entry<int[], Double> entry : pheromoneMap.entrySet()) {
             int[] key = entry.getKey();
-            Edge edge = entry.getValue();
-            System.out.println("Start Node: " + key[0] + ", End Node: " + key[1] + ", Pheromone Level: " + edge.getPheromoneLevel());
+            double value = entry.getValue();
+            System.out.println("Start Node: " + key[0] + ", End Node: " + key[1] + ", Pheromone Level: " + value);
         }
     }
 }

@@ -2,15 +2,14 @@ package EventManager;
 
 import graph.GraphFacade;
 
+import java.util.Random;
+
 public class PheromoneEvaporationEvent implements Event{
     private double time;
     private GraphFacade graph;
     private int startNode;
     private int endNode;
     private double evaporationRate;
-    
-
-
 
     public PheromoneEvaporationEvent(double time, GraphFacade graph, int startNode, int endNode, double evaporationRate) {
         this.time = time;
@@ -34,7 +33,10 @@ public class PheromoneEvaporationEvent implements Event{
         this.evaporationRate = evaporationRate;
     }
 
-    public double getEvaporationRate() {
-        return evaporationRate;
+
+    public double setTimestamp(){
+        Random random = new Random();
+        double next = random.nextDouble();
+        return -this.evaporationRate*Math.log(1.0-next);
     }
 }

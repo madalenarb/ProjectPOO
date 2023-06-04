@@ -1,7 +1,6 @@
 package EventManager;
 
 import java.util.PriorityQueue;
-
 import main.ParameterReader;
 
 public class EventManager{
@@ -19,6 +18,9 @@ public class EventManager{
         }
     }
 
+    public Event getEvent(){
+        return this.pec.poll();
+    }
     public void run() {
         while (!pec.isEmpty() && currentTime <= ParameterReader.getTau()) {
             Event event = pec.poll();

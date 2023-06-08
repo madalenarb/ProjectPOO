@@ -4,12 +4,24 @@ import pheromone.PheromoneMap;
 import main.ParameterReader;
 
 public class GraphFacade {
+	private static GraphFacade instance;
 	private PheromoneMap pheromoneMap;
 	private GraphGenerator antGraph;
 	
 	public GraphFacade(int size) {
         antGraph = new GraphGenerator(size);
         pheromoneMap = new PheromoneMap();
+	}
+	
+	public static GraphFacade getInstance() {
+		if (instance == null) {
+			synchronized (GraphFacade.class) {
+				if (instance == null) {
+					instance = new GraphFacade(ParameterReader.getN());
+				}
+			}
+		}
+		return instance;
 	}
 	
 	public int getWeight(int node1, int node2) {

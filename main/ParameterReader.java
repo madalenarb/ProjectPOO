@@ -26,6 +26,7 @@ import java.io.IOException;
  */
 
 public class ParameterReader {
+    private static ParameterReader instance;
 	static int readingMode; // 0 for -r, 1 for -f
     static int n; 
     static int a; 
@@ -38,7 +39,7 @@ public class ParameterReader {
     static float gamma;    
     static int nu;   
     static float tau; 
-    static GraphFacade g;
+    private GraphFacade g;
     // String inputFile;
 
     /**
@@ -56,6 +57,18 @@ public class ParameterReader {
             System.exit(0);
         }
     }
+
+    public static ParameterReader getInstance() {
+    	if (instance == null) {
+    		synchronized(ParameterReader.class) {
+    			if (instance == null) {
+    				instance = new ParameterReader();
+    			}
+    		}
+    	}
+    	return instance;
+    }
+
 
     /**
      * Returns the reading mode.
@@ -106,7 +119,7 @@ public class ParameterReader {
     	return tau;
     }
     
-    public static GraphFacade getGraphFacade() {
+    public GraphFacade getGraphFacade() {
     	return g;
     }
 
@@ -115,7 +128,7 @@ public class ParameterReader {
      * 
      * @param args the command line arguments
      */
-    public static void readParameters(String[] args){
+    public void readParameters(String[] args){
         n = Integer.parseInt(args[1]);
         a = Integer.parseInt(args[2]);
         n1 = Integer.parseInt(args[3]);
@@ -127,7 +140,7 @@ public class ParameterReader {
         gamma = Float.parseFloat(args[9]);
         nu = Integer.parseInt(args[10]);
         tau = Float.parseFloat(args[11]);
-        g = new GraphFacade(n);
+        g = GraphFacade.getInstance();
         g.fillGraphReadMode(n, a);
     }
 
@@ -136,7 +149,7 @@ public class ParameterReader {
      * 
      * @param inputFile the file from which the parameters are read
      */
-    public static void readInputFile(String inputFile){
+    public void readInputFile(String inputFile){
     	
         try(BufferedReader br = new BufferedReader(new FileReader(inputFile))){
             int lineCount = 0;
@@ -159,7 +172,7 @@ public class ParameterReader {
                     nu = Integer.parseInt(parameters[8]);
                     tau = Float.parseFloat(parameters[9]);
                     // Create graph with Hamiltonian cycle
-                    g = new GraphFacade(n);
+                    g = GraphFacade.getInstance();
                 } else {
                     String[] weights = line.split(" ");
                     if(weights.length != n){
@@ -175,7 +188,7 @@ public class ParameterReader {
         }
     }
     
-    public static void printParameters() {
+    public void printParameters() {
     	System.out.println("Input parameters:");
     	System.out.println("\t\t\t" + n + ": number of nodes in the graph");
     	System.out.println("\t\t\t" + n1 + " : the nest node");

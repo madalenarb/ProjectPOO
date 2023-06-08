@@ -6,7 +6,7 @@ import main.ParameterReader;
 
 public class EventManager{
 	private static EventManager managerInstance;
-    private final PriorityQueue<Event> pec;
+    private PriorityQueue<Event> pec;
     private double currentTime;
     
     public static EventManager getInstance() {

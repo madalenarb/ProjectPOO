@@ -64,7 +64,7 @@ public class Cycle {
 	
 	public void layP(EventManager PEC) {
 		GraphFacade gr = ParameterReader.getGraphFacade();
-		float p = ParameterReader.getGamma()*(1/currentCycleWeight);
+		float p = ParameterReader.getGamma()*(gr.getTotalWeight()/currentCycleWeight);
 		Iterator<Integer> iterator = cycle.iterator();
 		Integer previousNode = null;
 		Integer currentNode = null;

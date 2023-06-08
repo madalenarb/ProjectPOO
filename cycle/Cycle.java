@@ -42,7 +42,7 @@ public class Cycle {
     }
 	
 	public int removeCycle(int stopNod, BitSet nVNodes) {
-		GraphFacade g = ParameterReader.getGraphFacade();
+		GraphFacade g = GraphFacade.getInstance();
 		ListIterator<Integer> iterator = cycle.listIterator(cycle.size());
 		int reduceWeight = 0;
 		Integer previousElement = null;
@@ -63,7 +63,7 @@ public class Cycle {
 	}
 	
 	public void layP(EventManager PEC) {
-		GraphFacade gr = ParameterReader.getGraphFacade();
+		GraphFacade gr = GraphFacade.getInstance();
 		float p = ParameterReader.getGamma()*(gr.getTotalWeight()/currentCycleWeight);
 		Iterator<Integer> iterator = cycle.iterator();
 		Integer previousNode = null;

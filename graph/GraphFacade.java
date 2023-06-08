@@ -40,5 +40,13 @@ public class GraphFacade {
 		return pheromoneMap.reducePheromoneLevel(ParameterReader.getRho(), startNode, endNode);
 	}
 
-	//create a getTotalWeight method
+	public int getTotalWeight(){
+		int totalweight = 0;
+		for(int i = 0; i < ParameterReader.getN(); i++){
+			for(int j=i+1; j < ParameterReader.getN(); j++){
+				totalweight += antGraph.getWeight(i, j);
+			}
+		}
+		return totalweight;
+	}
 }

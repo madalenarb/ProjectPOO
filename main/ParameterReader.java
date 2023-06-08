@@ -52,7 +52,7 @@ public class ParameterReader {
         } else if(mode.contains("-f")){
             readingMode = 1;
         } else {
-            Message.CommandNotFound("Command not found", mode);
+            ErrorClass.CommandNotFound("Command not found", mode);
             System.exit(0);
         }
     }
@@ -82,18 +82,26 @@ public class ParameterReader {
     	return beta;
     }
     
+    public static float getDelta() {
+    	return delta;
+    }
+    
     public static float getRho() {
     	return rho;
+    }
+    
+    public static float getEta() {
+    	return eta;
     }
     
     public static float getGamma() {
     	return gamma;
     }
-
+    
     public static int getNu() {
     	return nu;
     }
-
+    
     public static float getTau() {
     	return tau;
     }
@@ -138,7 +146,7 @@ public class ParameterReader {
                 if(lineCount == 0){
                     String[] parameters = line.split(" ");
                     if(parameters.length != 10){
-                        Message.WrongNumberOfArguments("Wrong number of arguments in the input file, it must be 11");
+                        ErrorClass.WrongNumberOfArguments("Wrong number of arguments in the input file, it must be 11");
                     }
                     n = Integer.parseInt(parameters[0]);
                     n1 = Integer.parseInt(parameters[1]);
@@ -155,7 +163,7 @@ public class ParameterReader {
                 } else {
                     String[] weights = line.split(" ");
                     if(weights.length != n){
-                        Message.WrongNumberOfArguments("Wrong number of edges in the input file, it must be " + weights.length + " instead of " + n);
+                        ErrorClass.WrongNumberOfArguments("Wrong number of edges in the input file, it must be " + weights.length + " instead of " + n);
                     }
                     g.fillGraphFileMode(weights, lineCount);
                 }

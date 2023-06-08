@@ -4,6 +4,8 @@ import main.ParameterReader;
 
 import java.util.Random;
 
+import graph.GraphFacade;
+
 public class PheromoneEvaporationEvent implements Event{
     private double time;
     private int startNode;
@@ -18,7 +20,7 @@ public class PheromoneEvaporationEvent implements Event{
     @Override
     public void executeEvent(EventManager PEC) {
     	PEC.setTime(time);
-    	boolean biggerThanZero = ParameterReader.getGraphFacade().reducePheromones(startNode, endNode);
+    	boolean biggerThanZero = GraphFacade.getInstance().reducePheromones(startNode, endNode);
     	if(biggerThanZero) {
     		// Schedule another evaporation event
     		PEC.addEvent(new PheromoneEvaporationEvent(setNextEventTime(), startNode, endNode));

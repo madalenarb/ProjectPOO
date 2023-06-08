@@ -4,6 +4,9 @@ import java.util.ListIterator;
 import java.util.Iterator;
 import graph.GraphFacade;
 import main.ParameterReader;
+import java.util.BitSet;
+import event.EventManager;
+import event.PheromoneEvaporationEvent;
 
 public class Cycle {
 	private LinkedList<Integer> cycle;
@@ -20,10 +23,14 @@ public class Cycle {
     }
 	
 	public int getLastNode() {
-		if(cycle.isEmpty()) {
-			return -1;
-		}
 		return cycle.getLast();
+	}
+	
+	public boolean isLastNode(int element) {
+		if(cycle.getLast() != null) {
+			return (cycle.getLast()==element);
+		}
+		else {return false;}
 	}
 	
 	public int getCurrentCycleWeight() {
@@ -34,7 +41,7 @@ public class Cycle {
     	currentCycleWeight = currentCycleWeight + increment;
     }
 	
-	public void removeCycle(int stopNod) {
+	public int removeCycle(int stopNod, BitSet nVNodes) {
 		GraphFacade g = ParameterReader.getGraphFacade();
 		ListIterator<Integer> iterator = cycle.listIterator(cycle.size());
 		int reduceWeight = 0;
@@ -47,35 +54,48 @@ public class Cycle {
 			if(nextElement.equals(stopNod)) {
 				break;
 			}
-			previousElement = nextElement;
+			nVNodes.set(nextElement, true);
+			previousElement = Integer.valueOf(nextElement.intValue());
 			iterator.remove();
 		}
 		currentCycleWeight -= reduceWeight;
+		return reduceWeight;
 	}
 	
-	public void layP() {
+	public void layP(EventManager PEC) {
 		GraphFacade gr = ParameterReader.getGraphFacade();
-		double p = (ParameterReader.getGamma()*(currentCycleWeight - gr.getWeight(cycle.getLast(), ParameterReader.getNest())))/currentCycleWeight;
+		float p = ParameterReader.getGamma()*(1/currentCycleWeight);
 		Iterator<Integer> iterator = cycle.iterator();
 		Integer previousNode = null;
-		while (iterator.hasNext()) {
-			Integer currentNode = iterator.next();
+		Integer currentNode = null;
+		
+		while (iterator.hasNext() || isLastNode(previousNode)) {
+			
+			if(iterator.hasNext()) {
+				currentNode = iterator.next();
+			}
+			
+			else {
+				currentNode = ParameterReader.getNest();
+			}
+			
 			if(previousNode != null) {
-				gr.increaseEdgePheromones(previousNode,currentNode, p); 
-				// temos de verificar se havia phLevel antes de incrementar o phLevel, e se não havia temos de criar um novo Evento de Evaporação
-				// maybe no eventos??
+				double currentPheromones = gr.getPheromones(previousNode, currentNode);
+				gr.increaseEdgePheromones(previousNode, currentNode, p);
+				
+				// if the pheromone level was 0 before the increase in the
+				// level of pheromones, schedule a pheromone evaporation event
+				
+				if(currentPheromones == 0) {
+					PEC.addEvent(new PheromoneEvaporationEvent(PEC.getTime(), previousNode, currentNode));
+				}
 			}
 			previousNode = currentNode;
 		}
 	}
 	
-	// See if the cycle is complete
-	public boolean isComplete() {
-		return getLastNode() == ParameterReader.getNest();
-	}
-
 	public void printElements() {
-    	System.out.print("{");
+		System.out.print("{");
     	Iterator<Integer> iterator = cycle.iterator();
         while (iterator.hasNext()) {
         	Integer current = iterator.next();
@@ -87,6 +107,4 @@ public class Cycle {
         System.out.print("}:" + currentCycleWeight);
         //System.out.println();
     }
-
-	
 }

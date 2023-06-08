@@ -36,8 +36,8 @@ public class GraphFacade {
 		pheromoneMap.increasePheromoneLevel(node1, node2, increment);
 	}
 	
-	public void reducePheromones(int startNode, int endNode) {
-		pheromoneMap.reducePheromoneLevel(ParameterReader.getRho(), startNode, endNode);
+	public boolean reducePheromones(int startNode, int endNode) {
+		return pheromoneMap.reducePheromoneLevel(ParameterReader.getRho(), startNode, endNode);
 	}
 
 	//create a getTotalWeight method

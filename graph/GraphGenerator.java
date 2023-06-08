@@ -77,6 +77,6 @@ class GraphGenerator {
     		System.out.println();
     	}
     }
-    //create a totalWeight method
+    
 }
 

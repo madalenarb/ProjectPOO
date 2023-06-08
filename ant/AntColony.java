@@ -3,24 +3,35 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 import main.ParameterReader;
 import cycle.Cycle;
+import event.EventManager;
 
 
 public class AntColony {
+	private static AntColony instance;
 	private Ant[] ants;
 	private PriorityQueue<Cycle> hamiltonianCycleQueue;
 	private Cycle best;
 	
-	public AntColony() {
-		int nu = ParameterReader.getNu();
-		System.out.println("N: " + nu);
-		ants = new Ant[nu];
-		for(int i = 0; i < nu; i++) {
-			System.out.println("Ant "+i);
+	private AntColony() {
+		int n = ParameterReader.getNu();
+		ants = new Ant[n];
+		for(int i = 0; i < n; i++) {
 			ants[i] = new Ant(i);
 		}
 		hamiltonianCycleQueue = new PriorityQueue<>(Comparator.comparingInt(Cycle::getCurrentCycleWeight).reversed());
 		best = null;
 	}
+	
+	public static AntColony getInstance() {
+        if (instance == null) {
+        	synchronized (AntColony.class) {
+                if (instance == null) {
+                    instance = new AntColony();
+                }
+        	}
+        }
+        return instance;
+    }
 	
 	public void addCycleToPQ(Cycle c){
 		hamiltonianCycleQueue.offer(c);
@@ -29,20 +40,9 @@ public class AntColony {
 		}
 	}
 	
-	// see if the ants have completed a cycle
-	public boolean hasCompletedCycle(){
-		for(Ant ant : ants){
-			if(ant.getCurrentCycle().isComplete())
-				return true;
-		}
-		return false;
-	}
-
-	public void moveAnt(int i) {
-		boolean NVnodes = ants[i].chooseNextNode();
-		if(!NVnodes) { // the ant completed a cycle
-			ants[i].layPheromones();//não podemos- ter em atenção que antes disto temos de ver se o nivel de feromonas é positivo para ver se add ou nao o evento
-			//ver se no map feromonas existe um elemento que tenha os nodes da aresta que vamos meter feromonas
+	public boolean moveAnt(int i) {
+		boolean completeCycle = !ants[i].chooseNextNode();
+		if(completeCycle) { // the ant completed a cycle
 			// Compare the cycle with the best cycle
 			if(best == null) {
 				best = ants[i].getCurrentCycle();
@@ -53,11 +53,24 @@ public class AntColony {
 				}
 				else {
 					// Compare the cycle with the top 5 cycles
-					this.addCycleToPQ(ants[i].getCurrentCycle());
+					addCycleToPQ(ants[i].getCurrentCycle());
 				}
 			}
-			// Restart the graph
-			ants[i].setCurrentCycle(new Cycle());
+			return true;
 		}
+		return false;
 	}
+	
+	public void restartPath(int i) {
+		ants[i].setCurrentCycle(new Cycle());
+	}
+	
+	public void antLaysPheromones(int i, EventManager PEC) {
+		ants[i].layPheromones(PEC);
+	}
+	
+	public double meanTraverseTime(int i) {
+		return ants[i].getMeanEdgeTime();
+	}
+	
 }

@@ -51,7 +51,7 @@ public class PheromoneMap {
 		}
     }
 	
-	public void reducePheromoneLevel(double decrement, int startNode, int endNode) {
+	public boolean reducePheromoneLevel(double decrement, int startNode, int endNode) {
 		
 		// Add entries to the pheromoneMap
 		
@@ -63,11 +63,13 @@ public class PheromoneMap {
 		if(newPheromoneLevel > 0) {
 			// Modify the value associated with the key
 			pheromoneMap.replace(key, newPheromoneLevel);
+			return true;
 		}
 		
 		// Remove entries that do not have pheromones
 		else {
 			pheromoneMap.remove(key); // Remove the entry from the pheromoneMap
+			return false;
 		}
 
 	}

@@ -8,9 +8,9 @@ public class Main {
         ParameterReader.readingMode(args[0]);
         if(ParameterReader.getReadingMode() == 0){
             if(args.length < 12){
-                ErrorClass.CommandNotFound("Too few arguments", args[0]);
+                Message.CommandNotFound("Too few arguments", args[0]);
             } else if(args.length > 12){
-                ErrorClass.CommandNotFound("Too many arguments", args[0]);
+                Message.CommandNotFound("Too many arguments", args[0]);
             } else {
                 ParameterReader.readParameters(args);
             }
@@ -18,9 +18,9 @@ public class Main {
         
         else if(ParameterReader.getReadingMode() == 1){
             if(args.length < 2){
-                ErrorClass.CommandNotFound("Too few arguments", args[0]);
+                Message.CommandNotFound("Too few arguments", args[0]);
             } else if(args.length > 2){
-                ErrorClass.CommandNotFound("Too many arguments", args[0]);
+                Message.CommandNotFound("Too many arguments", args[0]);
             } else {
                 ParameterReader.readInputFile(args[1]);
             }

@@ -58,7 +58,7 @@ class Ant {
 		int edgeW = 0;
 		boolean completedCycle = false;
 		if((!AreThereUnvisitedNodes()) && (next == ParameterReader.getNest())) {
-			edgeW = ParameterReader.getGraphFacade().getWeight(currentCycle.getLastNode(), ParameterReader.getNest());
+			edgeW = GraphFacade.getInstance().getWeight(currentCycle.getLastNode(), ParameterReader.getNest());
 			completedCycle = true;
 		}
 		else {
@@ -115,7 +115,7 @@ class Ant {
 	}
 
     public boolean chooseNextNode() {
-    	GraphFacade g = ParameterReader.getGraphFacade();
+    	GraphFacade g = GraphFacade.getInstance();
     	Map<Integer, Double> probabilityList = new LinkedHashMap<>();
     	double sumProbabilities = 0;
     	ArrayList<Integer> visitedN = new ArrayList<>();

@@ -3,37 +3,31 @@ package event;
 import ant.AntColony;
 import main.ParameterReader;
 
-public class PrintEvent implements Event {
-    private double eventTime;
+public class PrintEvent extends Event {
     private AntColony antColony;
 
-    public PrintEvent(double eventTime) {
-        this.eventTime = eventTime;
+    public PrintEvent(double time) {
+        super(time);
         this.antColony = AntColony.getInstance();
     }
 
     @Override
-    public void executeEvent(EventManager PEC) {
-    	EventCounter counter = EventCounter.getInstance();
+    public void executeEvent() {
         System.out.println("Observation number: ");
         System.out.printf("%-3s : %-20s\n", "Present instant", getEventTime());
-        System.out.printf("%-3s : %-20s\n", "Number of move events", counter.getAntMoveEvents());
-        System.out.printf("%-3s : %-20s\n", "Number of evaporation events", counter.getPheromoneEvaporationEvents());
+        System.out.printf("%-3s : %-20s\n", "Number of move events", getPec().getMoveEventCounter());
+        System.out.printf("%-3s : %-20s\n", "Number of evaporation events", getPec().getPheromoneEventCounter());
         System.out.printf("%-3s : \n", "Top candidate cycles");
         antColony.printTopCycles();
         System.out.printf("%-3s :\n", "Best Hamiltonian cycle");
         antColony.printBestHamiltonianCycle();
-        PEC.addEvent(new PrintEvent(setNextEventTime()));
-    }
-
-    @Override
-    public double getEventTime() {
-        return eventTime;
+        System.out.println();
+        getPec().addEvent(new PrintEvent(setNextEventTime()));
     }
 
     @Override
     public double setNextEventTime() {
-        return eventTime + ParameterReader.getTau()/20;
+        return getPec().getTime() + ParameterReader.getTau()/20;
     }
 
     // make top candidate cycles

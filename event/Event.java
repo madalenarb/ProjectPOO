@@ -1,13 +1,23 @@
 package event;
 
-public interface Event extends Comparable<Event>{
-    void executeEvent(EventManager PEC);
-    double getEventTime();
-    
-    public double setNextEventTime();
+abstract class Event implements EventInterface{
+    private double time;
+    private EventManager pec;
 
-    @Override
-    default int compareTo(Event otherEvent) {
-        return Double.compare(this.getEventTime(), otherEvent.getEventTime());
+    public Event(double time){
+        this.time = time;
+        this.pec = EventManager.getInstance();
+    }
+
+    public double getEventTime(){
+        return this.time;
+    }
+
+    public double getPECTime(){
+        return this.pec.getTime();
+    }
+
+    public EventManager getPec(){
+        return this.pec;
     }
 }

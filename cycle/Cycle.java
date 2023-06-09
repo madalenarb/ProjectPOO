@@ -1,6 +1,7 @@
 package cycle;
 import java.util.LinkedList;
 import java.util.ListIterator;
+import java.util.Random;
 import java.util.Iterator;
 import graph.GraphFacade;
 import main.ParameterReader;
@@ -90,7 +91,10 @@ public class Cycle {
 				// level of pheromones, schedule a pheromone evaporation event
 				
 				if(currentPheromones == 0) {
-					PEC.addEvent(new PheromoneEvaporationEvent(previousNode, currentNode));
+					Random random = new Random();
+        			double next = random.nextDouble();
+        			double newEventTime = PEC.getTime() + (-ParameterReader.getEta()*Math.log(1.0-next));//get PEC time
+					PEC.addEvent(new PheromoneEvaporationEvent(newEventTime,previousNode, currentNode));
 				}
 			}
 			previousNode = currentNode;

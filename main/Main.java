@@ -31,5 +31,7 @@ public class Main {
         EventManager eventManager = EventManager.getInstance();
         eventManager.initializePEC();
         eventManager.run();
+        
     }
 }
+

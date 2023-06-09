@@ -34,6 +34,7 @@ public class AntColony {
     }
 	
 	public void printBestHamiltonianCycle() {
+		System.out.printf("\t\t\t");
 		best.printElements();
 	}
 	

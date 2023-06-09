@@ -23,6 +23,7 @@ public class PheromoneEvaporationEvent implements Event{
     	boolean biggerThanZero = GraphFacade.getInstance().reducePheromones(startNode, endNode);
     	if(biggerThanZero) {
     		// Schedule another evaporation event
+            PEC.incrementPheromoneEvent();
     		PEC.addEvent(new PheromoneEvaporationEvent(setNextEventTime(), startNode, endNode));
     	}
     }

@@ -17,8 +17,8 @@ public class PrintEvent implements Event {
     public void executeEvent(EventManager PEC) {
         System.out.println("Observation number: ");
         System.out.printf("%-3s : %-20s\n", "Present instant", getEventTime());
-        System.out.printf("%-3s : %-20s\n", "Number of move events", "TBD");
-        System.out.printf("%-3s : %-20s\n", "Number of evaporation events", "TBD");
+        System.out.printf("%-3s : %-20s\n", "Number of move events", PEC.getMoveEventCounter());
+        System.out.printf("%-3s : %-20s\n", "Number of evaporation events", PEC.getPheromoneEventCounter());
         System.out.printf("%-3s : \n", "Top candidate cycles");
         antColony.printTopCycles();
         System.out.printf("%-3s :\n", "Best Hamiltonian cycle");

@@ -55,14 +55,13 @@ class Ant {
 		Random randomN = new Random();
 		int r = randomN.nextInt(visitedN.size());
 		int next = visitedN.get(r);
-		int edgeW = 0;
+		int edgeW = GraphFacade.getInstance().getWeight(currentCycle.getLastNode(), next);;
 		boolean completedCycle = false;
 		if((!AreThereUnvisitedNodes()) && (next == ParameterReader.getNest())) {
-			edgeW = GraphFacade.getInstance().getWeight(currentCycle.getLastNode(), ParameterReader.getNest());
 			completedCycle = true;
 		}
 		else {
-			edgeW = currentCycle.removeCycle(visitedN.get(r), nonVisitedNodes);
+			currentCycle.removeCycle(visitedN.get(r), nonVisitedNodes);
 		}
 		setMeanEdgeTime(edgeW);
 		return completedCycle;

@@ -33,10 +33,18 @@ public class AntColony {
         return instance;
     }
 	
-	public Cycle getBestHamiltonianCycle() {
-		return best;
+	public void printBestHamiltonianCycle() {
+		best.printElements();
 	}
-
+	
+	public void printTopCycles() {
+		for(Cycle c : hamiltonianCycleQueue) {
+			System.out.printf("\t\t\t");
+			c.printElements();
+			System.out.println();
+		}
+	}
+	
 	public void addCycleToPQ(Cycle c){
 		hamiltonianCycleQueue.offer(c);
 		if(hamiltonianCycleQueue.size() > 5) {
@@ -77,12 +85,4 @@ public class AntColony {
 		return ants[i].getMeanEdgeTime();
 	}
 	
-	public void printTopCycles() {
-		for(Cycle c : hamiltonianCycleQueue) {
-			System.out.printf("\t\t\t");
-			c.printElements();
-			System.out.println();
-		}
-	}
-
 }

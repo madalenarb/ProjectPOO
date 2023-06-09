@@ -28,7 +28,6 @@ public class AntMoveEvent implements Event{
         	// restart the ant's path
         	antCol.restartPath(antID);
         }
-        PEC.incrementMoveEvent();
         PEC.addEvent(new AntMoveEvent(setNextEventTime(), antID));
     }
 

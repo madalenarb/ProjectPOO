@@ -11,8 +11,8 @@ public class PheromoneEvaporationEvent implements Event{
     private int startNode;
     private int endNode;
 
-    public PheromoneEvaporationEvent(double time, int startNode, int endNode) {
-        this.time = time;
+    public PheromoneEvaporationEvent(int startNode, int endNode) {
+        this.time = setNextEventTime();
         this.startNode = startNode;
         this.endNode = endNode;
     }
@@ -23,8 +23,7 @@ public class PheromoneEvaporationEvent implements Event{
     	boolean biggerThanZero = GraphFacade.getInstance().reducePheromones(startNode, endNode);
     	if(biggerThanZero) {
     		// Schedule another evaporation event
-            PEC.incrementPheromoneEvent();
-    		PEC.addEvent(new PheromoneEvaporationEvent(setNextEventTime(), startNode, endNode));
+    		PEC.addEvent(new PheromoneEvaporationEvent(startNode, endNode));
     	}
     }
 
@@ -37,7 +36,7 @@ public class PheromoneEvaporationEvent implements Event{
     public double setNextEventTime(){
         Random random = new Random();
         double next = random.nextDouble();
-        double newEventTime = time + (-ParameterReader.getEta()*Math.log(1.0-next));
+        double newEventTime = time + (-ParameterReader.getEta()*Math.log(1.0-next));//get PEC time
         return newEventTime;
     }
 }

@@ -90,7 +90,7 @@ public class Cycle {
 				// level of pheromones, schedule a pheromone evaporation event
 				
 				if(currentPheromones == 0) {
-					PEC.addEvent(new PheromoneEvaporationEvent(PEC.getTime(), previousNode, currentNode));
+					PEC.addEvent(new PheromoneEvaporationEvent(previousNode, currentNode));
 				}
 			}
 			previousNode = currentNode;

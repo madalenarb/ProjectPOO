@@ -174,20 +174,19 @@ public class ParameterReader {
         }
         
     }
-    
+
     public static void printParameters() {
-    	System.out.println("Input parameters:");
-    	System.out.println("\t\t\t" + n + ": number of nodes in the graph");
-    	System.out.println("\t\t\t" + n1 + " : the nest node");
-    	System.out.println("\t\t\t" + alpha + " : alpha, ant move event");
-    	System.out.println("\t\t\t" + beta + " : beta, ant move event");
-    	System.out.println("\t\t\t" + delta + " : delta, ant move event");
-    	System.out.println("\t\t\t" + eta + " : eta, pheromone evaporation event");
-    	System.out.println("\t\t\t" + rho + " : rho, pheromone evaporation event");
-    	System.out.println("\t\t\t" + gamma + " : pheromone level");
-    	System.out.println("\t\t\t" + nu + " : ant colony size");
-    	System.out.println("\t\t\t" + tau + " : final instant");
-    	System.out.println("\twith graph:");
-    	GraphFacade.getInstance().printAntGraph();
+        System.out.println("Parameters:");
+        System.out.println("Input parameters:");
+        System.out.printf("\t\t\t%-5s : %-30s\n", n, "number of nodes in the graph");
+        System.out.printf("\t\t\t%-5s : %-30s\n", n1, "the nest node");
+        System.out.printf("\t\t\t%-5s : %-30s\n", alpha, "alpha, ant move event");
+        System.out.printf("\t\t\t%-5s : %-30s\n", beta, "beta, ant move event");
+        System.out.printf("\t\t\t%-5s : %-30s\n", delta, "delta, ant move event");
+        System.out.printf("\t\t\t%-5s : %-30s\n", eta, "eta, pheromone evaporation event");
+        System.out.printf("\t\t\t%-5s : %-30s\n", rho, "rho, pheromone evaporation event");
+        System.out.printf("\t\t\t%-5s : %-30s\n", gamma, "pheromone level");
+        System.out.printf("\t\t\t%-5s : %-30s\n", nu, "ant colony size");
+        System.out.printf("\t\t\t%-5s : %-30s\n", tau, "final instant");
     }
 }

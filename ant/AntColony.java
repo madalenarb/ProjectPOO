@@ -1,5 +1,6 @@
 package ant;
 import java.util.Comparator;
+import java.util.List;
 import java.util.PriorityQueue;
 import main.ParameterReader;
 import cycle.Cycle;
@@ -33,6 +34,10 @@ public class AntColony {
         return instance;
     }
 	
+	public Cycle getBestHamiltonianCycle() {
+		return best;
+	}
+
 	public void addCycleToPQ(Cycle c){
 		hamiltonianCycleQueue.offer(c);
 		if(hamiltonianCycleQueue.size() > 5) {
@@ -73,4 +78,12 @@ public class AntColony {
 		return ants[i].getMeanEdgeTime();
 	}
 	
+	public void printTopCycles() {
+		for(Cycle c : hamiltonianCycleQueue) {
+			System.out.printf("\t\t\t");
+			c.printElements();
+			System.out.println();
+		}
+	}
+
 }

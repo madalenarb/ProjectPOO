@@ -17,6 +17,9 @@ public class AntMoveEvent implements Event{
 
     @Override
     public void executeEvent(EventManager PEC) {
+        if(antID == 0){
+            System.out.println("Ant " + antID + " moves at time " + time);
+        }
     	PEC.setTime(time);
         if(antCol.moveAnt(antID)) { // completed cycle
         	// lay pheromones and create evaporation events for

@@ -8,9 +8,7 @@ public class EventManager{
 	private static EventManager managerInstance;
     private PriorityQueue<Event> pec;
     private double currentTime;
-    private int moveEventCounter;
-    private int pheromoneEventCounter;
-
+    
     public static EventManager getInstance() {
         if (managerInstance == null) {
         	synchronized (EventManager.class) {
@@ -25,18 +23,8 @@ public class EventManager{
     public EventManager() {
         this.pec = new PriorityQueue<>();
         this.currentTime = 0;
-        this.moveEventCounter = 0;
-        this.pheromoneEventCounter = 0;
     }
     
-    public int getMoveEventCounter() {
-        return moveEventCounter;
-    }
-
-    public int getPheromoneEventCounter() {
-        return pheromoneEventCounter;
-    }
-
     public void setTime(double time) {
     	currentTime = time;
     }
@@ -60,19 +48,12 @@ public class EventManager{
     		addEvent(new AntMoveEvent(currentTime, i));
     	}
     }
-
-    public void incrementMoveEvent() {
-        this.moveEventCounter++;
-    }
-
-
-    public void incrementPheromoneEvent() {
-        this.pheromoneEventCounter++;
-    }
     
     public void run() {
+    	EventCounter counter = EventCounter.getInstance();
         while (!pec.isEmpty() && currentTime <= ParameterReader.getTau()) {
             Event event = pec.poll();
+            counter.countEvents(event);
             event.executeEvent(this);
         }
     }

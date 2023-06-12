@@ -5,12 +5,18 @@ import event.EventManager;
 import java.util.Comparator;
 import java.util.TreeSet;
 
+/**
+ * Represents an Ant Colony used in the ant colony optimization algorithm.
+ */
 public class AntColony {
 	private static AntColony instance;
 	private Ant[] ants;
 	private TreeSet<Cycle> hamiltonianCycleQueue;
 	private Cycle best;
 	
+	/**
+	 * Private constructor for the AntColony class.
+	 */
 	private AntColony() {
 		int n = ParameterReader.getNu();
 		ants = new Ant[n];
@@ -21,6 +27,12 @@ public class AntColony {
 		best = null;
 	}
 	
+	
+	/**
+	 * Gets the singleton instance of the AntColony.
+	 *
+	 * @return The singleton instance of the AntColony.
+	 */
 	public static AntColony getInstance() {
         if (instance == null) {
         	synchronized (AntColony.class) {
@@ -32,11 +44,17 @@ public class AntColony {
         return instance;
     }
 	
+	/**
+	 * Prints the best Hamiltonian cycle found by the ants.
+	 */
 	public void printBestHamiltonianCycle() {
 		System.out.printf("\t\t\t");
 		best.printElements();
 	}
 	
+	/**
+	 * Prints the top cycles found by the ants.
+	 */
 	public void printTopCycles() {
 		for(Cycle c : hamiltonianCycleQueue) {
 			System.out.printf("\t\t\t");
@@ -45,6 +63,11 @@ public class AntColony {
 		}
 	}
 	
+	/**
+	 * Adds a cycle to the priority queue of cycles.
+	 *
+	 * @param c The cycle to be added to the priority queue.
+	 */
 	public void addCycleToPQ(Cycle c){
 		
 		if(c.getCycleList().equals(best.getCycleList())) {
@@ -63,6 +86,12 @@ public class AntColony {
 		}
 	}
 	
+	/**
+	 * Moves an ant to the next node and checks if it completed a cycle.
+	 *
+	 * @param i The index of the ant to move.
+	 * @return True if the ant completed a cycle, false otherwise.
+	 */
 	public boolean moveAnt(int i) {
 		boolean completeCycle = ants[i].chooseNextNode();
 		if(completeCycle) { // the ant completed a cycle
@@ -84,15 +113,32 @@ public class AntColony {
 		return false;
 	}
 	
+	/**
+	 * Restarts the path for an ant.
+	 *
+	 * @param i The index of the ant.
+	 */
 	public void restartPath(int i) {
 		ants[i].setCurrentCycle(new Cycle());
 		ants[i].resetNonVisitedNodes();
 	}
 	
+	/**
+	 * Ant lays pheromones on the current cycle.
+	 *
+	 * @param i   The index of the ant.
+	 * @param PEC The event manager for handling events.
+	 */
 	public void antLaysPheromones(int i, EventManager PEC) {
 		ants[i].layPheromones(PEC);
 	}
 	
+	/**
+	 * Gets the mean traverse time for an ant.
+	 *
+	 * @param i The index of the ant.
+	 * @return The mean traverse time.
+	 */
 	public double meanTraverseTime(int i) {
 		return ants[i].getMeanEdgeTime();
 	}

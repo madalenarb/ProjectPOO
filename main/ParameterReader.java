@@ -5,24 +5,26 @@ import graph.GraphFacade;
 import java.io.FileReader;
 import java.io.IOException;
 
-/*
- * This class is used to read the parameters from the command line or from a file
- * 
- * @param readingMode: 0 for -r, 1 for -f
- * @param n: number of nodes in the graph
- * @param a: the nest node
- * @param n1: weight of traversing an edge
- * @param alpha: parameter concerning the ant movements
- * @param beta: parameter concerning the ant movements
- * @param delta: parameter concerning the ant movements
- * @param eta: parameter concerning the pheromone evaporation
- * @param rho: parameter concerning the pheromone evaporation
- * @param gamma: parameter concerning the pheromone evaporation
- * @param nu: ant colony size
- * @param tau: final instant of the simulation
- * 
- * @return: the parameters
- * 
+/**
+ * This class is used to read the parameters from the command line or from a file.
+ *
+ * <p>The parameters include:</p>
+ * <ul>
+ *   <li>{@code readingMode}: The reading mode (0 for -r, 1 for -f).</li>
+ *   <li>{@code n}: The number of nodes in the graph.</li>
+ *   <li>{@code a}: The nest node.</li>
+ *   <li>{@code n1}: The weight of traversing an edge.</li>
+ *   <li>{@code alpha}: The parameter concerning the ant movements.</li>
+ *   <li>{@code beta}: The parameter concerning the ant movements.</li>
+ *   <li>{@code delta}: The parameter concerning the ant movements.</li>
+ *   <li>{@code eta}: The parameter concerning the pheromone evaporation.</li>
+ *   <li>{@code rho}: The parameter concerning the pheromone evaporation.</li>
+ *   <li>{@code gamma}: The parameter concerning the pheromone evaporation.</li>
+ *   <li>{@code nu}: The ant colony size.</li>
+ *   <li>{@code tau}: The final instant of the simulation.</li>
+ * </ul>
+ *
+ * @return The parameters.
  */
 
 public class ParameterReader {
@@ -64,42 +66,92 @@ public class ParameterReader {
         return readingMode;
     }
     
+    /**
+     * Gets the number of nodes in the graph.
+     * 
+     * @return the number of nodes in the graph
+     */
     public static int getN() {
     	return n;
     }
     
+    /**
+     * Gets the nest node.
+     * 
+     * @return the nest node
+     */
     public static int getNest() {
     	return n1;
     }
     
+    /**
+     * Gets the alpha parameter for the ant movements.
+     * 
+     * @return the alpha parameter
+     */
     public static float getAlpha() {
     	return alpha;
     }
     
+    /**
+     * Gets the beta parameter for the ant movements.
+     * 
+     * @return the beta parameter
+     */
     public static float getBeta() {
     	return beta;
     }
     
+    /**
+     * Returns the delta parameter for ant movements.
+     * 
+     * @return the delta parameter
+     */
     public static float getDelta() {
     	return delta;
     }
     
+    /**
+     * Returns the rho parameter for pheromone evaporation.
+     * 
+     * @return the rho parameter
+     */
     public static float getRho() {
     	return rho;
     }
     
+    /**
+     * Returns the eta parameter for pheromone evaporation.
+     * 
+     * @return the eta parameter
+     */
     public static float getEta() {
     	return eta;
     }
     
+    /**
+     * Returns the gamma parameter for pheromone evaporation.
+     * 
+     * @return the gamma parameter
+     */
     public static float getGamma() {
     	return gamma;
     }
     
+    /**
+     * Returns the ant colony size.
+     * 
+     * @return the ant colony size
+     */
     public static int getNu() {
     	return nu;
     }
-    
+
+    /**
+     * Returns the final instant of the simulation.
+     * 
+     * @return the final instant
+     */
     public static float getTau() {
     	return tau;
     }
@@ -175,6 +227,9 @@ public class ParameterReader {
         
     }
     
+    /**
+     * Prints the input parameters and the graph.
+     */
     public static void printParameters() {
     	int nest = n1 + 1;
     	System.out.println("Input parameters:");

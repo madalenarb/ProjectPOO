@@ -1,16 +1,17 @@
-# Makefile for Java project
-
 # Java compiler
 JC = javac
 
 # Java compiler flags
 JFLAGS = -g --release 8
 
-# Source directories
-SRCDIRS = graph main
+# Java doc generator
+JAVADOC = javadoc
 
-# Java source files (excluding Make.java)
-SRCS = $(foreach dir,$(SRCDIRS),$(filter-out main/Make.java,$(wildcard $(dir)/*.java)))
+# Source directories
+SRCDIRS = ant cycle event graph main
+
+# Java source files (excluding Main.java)
+SRCS = $(foreach dir,$(SRCDIRS),$(wildcard $(dir)/*.java))
 
 # Java class directory
 CLASSDIR = classes
@@ -26,6 +27,9 @@ MANIFEST = manifest.txt
 
 # Main class
 MAINCLASS = main.Main
+
+# Documentation directory
+DOCDIR = javadoc
 
 # Default target
 default: $(JARFILE)
@@ -47,8 +51,24 @@ $(MANIFEST):
 	echo "Main-Class: $(MAINCLASS)" > $(MANIFEST)
 	echo "" >> $(MANIFEST)
 
+# Generate Javadoc
+javadoc: $(SRCS)
+	$(JAVADOC) -d $(DOCDIR) $(SRCS)
+
+# Open Javadoc
+openjavadocUbuntu: javadoc
+	xdg-open $(DOCDIR)/index.html
+
+openjavadocMac: javadoc
+	open $(DOCDIR)/index.html
+
+openjavadocWindows: javadoc
+	start $(DOCDIR)/index.html
+
+# Open Javadoc in a browser
+
 # Clean generated files
 clean:
-	$(RM) -r $(CLASSDIR) $(JARFILE) $(MANIFEST)
+	$(RM) -r $(CLASSDIR) $(JARFILE) $(MANIFEST) $(DOCDIR)
 
-.PHONY: clean
+.PHONY: clean javadoc openjavadocUbuntu openjavadocMac openjavadocWindows

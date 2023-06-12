@@ -3,22 +3,58 @@ package graph;
 import java.util.Arrays;
 import java.util.Random;
 
+/**
+ * GraphGenerator class.
+ * Utility class for generating a graph representation, with the ability to set weights, 
+ * get weights, generate random permutations and weights, and fill the graph 
+ * in no file mode or with a file.
+ * 
+ * <p>Class Parameters:</p>
+ * <ul>
+ * <li>{@code graph} - the graph.</li>
+ * </ul>
+ */
 class GraphGenerator {
 	
 	protected int[][] graph; // Graph
 	
+    /**
+     * Creates a GraphGenerator with a specified number of vertices.
+     * 
+     * @param numVertices The number of vertices in the graph.
+     */
     public GraphGenerator(int numVertices) {
     	graph = new int[numVertices][numVertices];
     }
     
+    
+    /**
+     * Sets the weight of an edge between two vertices in the graph.
+     * 
+     * @param i The first vertex.
+     * @param j The second vertex.
+     * @param w The weight of the edge between vertices i and j.
+     */
     private void setWeight(int i, int j, int w) {
     	graph[i][j] = w;
     }
     
+    /**
+     * Gets the weight of an edge between two vertices in the graph.
+     * 
+     * @param i The first vertex.
+     * @param j The second vertex.
+     * @return The weight of the edge between vertices i and j.
+     */
     public int getWeight(int i, int j) {
     	return graph[i][j];
     }
-    
+
+    /**
+     * Shuffles a given permutation array.
+     * 
+     * @param perm The permutation array to shuffle.
+     */
     private static void shufflePerm(int[] perm) {
     	Random random = new Random();
         for (int i = perm.length - 1; i > 0; i--) {
@@ -29,11 +65,24 @@ class GraphGenerator {
         }
     }
     
+    /**
+     * Generates a random weight between a specified range.
+     * 
+     * @param min The minimum weight value.
+     * @param max The maximum weight value.
+     * @return A random weight between min and max (inclusive).
+     */
     private static int getRandomWeight(int min, int max) {
         Random random = new Random();
         return random.nextInt(max - min + 1) + min;
     }
     
+    /**
+     * Fills the graph in no file mode with randomly generated weights.
+     * 
+     * @param n The number of vertices in the graph.
+     * @param maxW The maximum weight value.
+     */
     public void fillGraphNoFile(int n, int maxW) {
     	
     	int[] permutation = new int[n];
@@ -71,6 +120,7 @@ class GraphGenerator {
         // add one to the upper bound to include it
         int randomInt = random.nextInt(upperBound + 1);
         
+        // Create random edges between nodes
         for(int i = 0; i < randomInt; i++) {
         	while(true) {
         		
@@ -90,12 +140,21 @@ class GraphGenerator {
         
     }
     
+    /**
+     * Fills the graph with weights from a file.
+     * 
+     * @param w An array of weights.
+     * @param linecnt The line number in the file.
+     */
     public void fillGraphFile(String w[], int linecnt) {
     	for(int i = 0; i < graph[linecnt-1].length; i++){
     		this.setWeight(linecnt - 1, i, Integer.parseInt(w[i]));
         }
     }
     
+    /**
+     * Prints the graph.
+     */
     public void printGraph() {
     	for(int[] row : graph) {
     		System.out.print("\t\t\t");

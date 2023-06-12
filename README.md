@@ -1,35 +1,69 @@
-Criem um projeto chamado AntColony no eclipse (ou noutro editor). Depois, dentro do diretório do AntColony, vão até à pasta src criada pelo editor (se o vosso editor não criar
-esta pasta automaticamente, criem vocês por favor). Nesta pasta insiram todos os ficheiros e pastas que estão dentro da pasta AntColonyUpdated (a pasta onde se encontra o 
-ficheiro que estão neste momento a ler). Enjoy :)
+# Ant Colony Optimization Simulator
+## Description
+This project is a simulation of the Ant Colony Optimization algorithm. It uses the principles of the behavior of ants searching for food to find optimized solutions to graph problems. It's written in Java and includes classes to represent the ants, the graph on which they move, and the pheromones they drop.
 
+## Usage
+Compile the code with the Makefile. Run the program with the following command:
+```bash
+make
+```
+After compiling, the program can be invoked from the command line in two different ways.
+### First way:
+The following command does not contain a graph. Therefore, a random graph with a Hamiltonian cycle must be generated, with the specified number of nodes n and a maximum edge weight a. The minimum edge weight should be zero. Keep in mind that although the generator must ensure a Hamiltonian cycle, the resulting graph may also contain other cycles. The input parameters (n, n1, α, β, δ, η, ρ, γ, ν, and τ ), alongside the generated graph, should be used to run the simulation.
 
-# Change directory to the local repository
-$ cd /path/to/local/repository
+```bash
+java -jar project.jar -r n a n1 α β δ η ρ γ ν τ
+```
 
-# Check the status of your repository (optional)
-$ git status
+### Second way:
+The following command allows you to provide the graph from a file.
+```bash
+java -jar project.jar -f <file>
+```
 
-# Stage the changes you want to commit
-# <file> refers to a specific file or use '.' to add all changes
-$ git add <file> or git add .
+## Parameters
+<ul>
+  <li>n: number of nodes in the graph</li>
+  <li>a: maximum edge weight</li>
+  <li>n1: number of ants</li>
+  <li>α: pheromone importance</li>
+  <li>β: heuristic importance</li>
+  <li>δ: pheromone evaporation rate</li>
+  <li>η: pheromone deposit rate</li>
+  <li>ρ: pheromone deposit rate for the best ant</li>
+  <li>γ: pheromone deposit rate for the worst ant</li>
+  <li>ν: pheromone deposit rate for the best ant in the last iteration</li>
+  <li>τ: pheromone deposit rate for the worst ant in the last iteration</li>
+</ul>
 
-# Commit the changes with a descriptive message
-$ git commit -m "Commit message"
+# Makefile Commands
+After compiling, you can also run the Makefile commands.
 
-# Push the changes to the default branch
-$ git push
+To compile Java source files into class files:
+```bash
+make
+```
 
-# OR
+To clean up the project:
+```bash
+make clean
+```
 
-# Create a new branch or switch to an existing branch
-$ git checkout -b <branch_name> or git checkout <branch_name>
+To generate Javadoc:
+```bash
+make javadoc
+```
 
-# Stage and commit your changes
-$ git add <file> or git add .
-$ git commit -m "Commit message"
-
-# Push the changes to the specified branch
-$ git push origin <branch_name>
-
-# See branches
-$ git branch
+To open the Javadoc in a web browser:
+On Ubuntu:
+```bash
+make openjavadocUbuntu
+```
+On Windows:
+```bash
+make openjavadocWindows
+```
+On MacOs:
+```bash
+make openjavadocMac
+```

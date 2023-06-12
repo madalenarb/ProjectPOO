@@ -1,5 +1,8 @@
 package main;
 
+/**
+ * The Message class provides methods for printing error messages and the correct usage instructions.
+ */
 class Message {
 	/**
      * Prints an error message for a command not found and exits the program.

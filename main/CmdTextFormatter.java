@@ -1,5 +1,9 @@
 package main;
 
+/**
+ * The CmdTextFormatter class provides constants for formatting command line text output.
+ * It includes constants for bold, underline, and various color codes.
+ */
 public class CmdTextFormatter {
 	public static final String BOLD = "\033[1m";
     public static final String UNDERLINE = "\033[4m";

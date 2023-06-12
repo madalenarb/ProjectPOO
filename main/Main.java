@@ -1,9 +1,33 @@
+/**
+ * The main class for the Ant Colony Optimization algorithm.
+ *
+ * <p>This class contains the entry point for running the algorithm and controlling the execution flow.
+ * It initializes the necessary components, such as the ant colony and event manager, and runs the simulation.
+ *
+ * <p><b>Authors:</b>
+ * <ul>
+ *   <li>Ana Ferreira</li>
+ *   <li>Diogo Neves</li>
+ *   <li>Madalena Barros</li>
+ * </ul>
+ */
+
 package main;
 
 import event.EventManager;
 
+/**
+ * The main class for the Ant Colony Optimization algorithm.
+ *
+ * <p>This class contains the entry point for running the algorithm and controlling the execution flow.
+ * It initializes the necessary components, such as the ant colony and event manager, and runs the simulation.
+ */
 public class Main {
-	public static void main(String[] args){
+	
+    /** 
+     * @param args
+     */
+    public static void main(String[] args){
 		
         ParameterReader.readingMode(args[0]);
         if(ParameterReader.getReadingMode() == 0){

@@ -3,12 +3,23 @@ package event;
 import ant.AntColony;
 import main.ParameterReader;
 
+/**
+ * Represents a print event in the simulation.
+ */
 public class PrintEvent extends Event {
 
+    /**
+     * Constructs a new PrintEvent object.
+     *
+     * @param time The time at which the event occurs.
+     */
     public PrintEvent(double time) {
         super(time);
     }
 
+    /**
+     * Executes the print event.
+     */
     @Override
     public void executeEvent() {
     	AntColony antColony = AntColony.getInstance();
@@ -30,6 +41,12 @@ public class PrintEvent extends Event {
         getPec().addEvent(new PrintEvent(setNextEventTime()));
     }
 
+    
+    /**
+     * Sets the time for the next print event.
+     *
+     * @return The time for the next event.
+     */
     @Override
     public double setNextEventTime() {
         return getEventTime() + ParameterReader.getTau()/20;

@@ -192,27 +192,38 @@ public class ParameterReader {
             
             while(line != null){
                 if(lineCount == 0){
-                    String[] parameters = line.split(" ");
+                    String[] parameters = line.trim().split("\\s+");
+                    int numberofParameters = parameters.length;
                     if(parameters.length != 10){
-                        Message.WrongNumberOfArguments("Wrong number of arguments in the input file, it must be 11");
+                        Message.WrongNumberOfArguments("Wrong number of arguments in the input file, it must be 10, instead of " + numberofParameters + "");
                     }
                     n = Integer.parseInt(parameters[0]);
+                    System.out.println("n: " + n);
                     n1 = Integer.parseInt(parameters[1])-1;
+                    System.out.println("n1: " + n1);
                     alpha = Float.parseFloat(parameters[2]);
+                    System.out.println("alpha: " + alpha);
                     beta = Float.parseFloat(parameters[3]);
+                    System.out.println("beta: " + beta);
                     delta = Float.parseFloat(parameters[4]);
+                    System.out.println("delta: " + delta);
                     eta = Float.parseFloat(parameters[5]);
+                    System.out.println("eta: " + eta);
                     rho = Float.parseFloat(parameters[6]);
+                    System.out.println("rho: " + rho);
                     gamma = Float.parseFloat(parameters[7]);
+                    System.out.println("gamma: " + gamma);
                     nu = Integer.parseInt(parameters[8]);
+                    System.out.println("nu: " + nu);
                     tau = Float.parseFloat(parameters[9]);
+                    System.out.println("tau: " + tau);
                     // Create graph with Hamiltonian cycle
                     g = GraphFacade.getInstance();
                 } 
                 else {
-                    String[] weights = line.split(" ");
+                    String[] weights = line.trim().split("\\s+");
                     if(weights.length != n){
-                        Message.WrongNumberOfArguments("Wrong number of edges in the input file, it must be " + weights.length + " instead of " + n);
+                        Message.WrongNumberOfArguments("Wrong number of edges in the input file, it must be " + n + " instead of " + weights.length + "");
                     }
                     if(g != null) {
                     	g.fillGraphFileMode(weights, lineCount);

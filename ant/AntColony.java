@@ -49,7 +49,11 @@ public class AntColony {
 	 */
 	public void printBestHamiltonianCycle() {
 		System.out.printf("\t\t\t");
-		best.printElements();
+		try{
+			best.printElements();
+		} catch (Exception e) {
+			System.out.println("No Hamiltonian cycle found.");
+		}
 	}
 	
 	/**

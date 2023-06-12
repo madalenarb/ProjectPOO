@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author Ana
- *
- */
-module AntColony {
-}

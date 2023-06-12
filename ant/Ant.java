@@ -16,9 +16,9 @@ class Ant {
     private BitSet nonVisitedNodes;
     private double meanEdgeTime;
 
-    public Ant(int id) {
+    public Ant() {
 		this.nonVisitedNodes = new BitSet(ParameterReader.getN());
-        nonVisitedNodes.set(0, ParameterReader.getN(), true);
+        nonVisitedNodes.set(0, ParameterReader.getN());
         int nest = ParameterReader.getNest();
         this.currentCycle = new Cycle();
         nonVisitedNodes.set(nest, false);
@@ -30,10 +30,6 @@ class Ant {
     public Cycle getCurrentCycle() {
         return currentCycle;
     }
-    
-	public boolean AreThereUnvisitedNodes() {
-		return !nonVisitedNodes.isEmpty();
-	}
 
     public void setCurrentCycle(Cycle c) {
         currentCycle = c;
@@ -43,6 +39,11 @@ class Ant {
     	currentCycle.layP(PEC);
     }
     
+    public void resetNonVisitedNodes() {
+    	nonVisitedNodes.set(0, ParameterReader.getN());
+    	nonVisitedNodes.set(ParameterReader.getNest(), false);
+    }
+    
     public double getMeanEdgeTime() {
     	return meanEdgeTime;
     }
@@ -50,18 +51,23 @@ class Ant {
     public void setMeanEdgeTime(int weight) {
     	meanEdgeTime = weight * ParameterReader.getDelta();
     }
+    
+    public boolean AreThereUnvisitedNodes() {
+		return !nonVisitedNodes.isEmpty();
+	}
 
 	public boolean handleVisitedNodes(ArrayList<Integer> visitedN) {
 		Random randomN = new Random();
 		int r = randomN.nextInt(visitedN.size());
 		int next = visitedN.get(r);
-		int edgeW = GraphFacade.getInstance().getWeight(currentCycle.getLastNode(), next);;
+		int edgeW = GraphFacade.getInstance().getWeight(currentCycle.getLastNode(), next);
 		boolean completedCycle = false;
 		if((!AreThereUnvisitedNodes()) && (next == ParameterReader.getNest())) {
 			completedCycle = true;
+			currentCycle.incrementCurrentCycleWeight(edgeW);
 		}
 		else {
-			currentCycle.removeCycle(visitedN.get(r), nonVisitedNodes);
+			currentCycle.removeCycle(next, nonVisitedNodes);
 		}
 		setMeanEdgeTime(edgeW);
 		return completedCycle;
@@ -70,9 +76,10 @@ class Ant {
 	public double getNodes(GraphFacade g, int currentNode, ArrayList<Integer> visitedN, Map<Integer,Double> probabilityList){
 		double sumProbabilities = 0;
 		for(int i = 0; i < ParameterReader.getN(); i++){
-			if(nonVisitedNodes.get(currentNode)){
+			if(nonVisitedNodes.get(i)){
 				sumProbabilities = calculateProbabilities(g, currentNode, i, probabilityList, sumProbabilities);
-			} else {
+			} 
+			else {
 				if(g.getWeight(currentNode, i) != 0 && probabilityList.isEmpty()){
 					visitedN.add(i);
 				}
@@ -91,7 +98,7 @@ class Ant {
 		return sumProbabilities;
 	}
 
-	public void InverseTranformSampling(GraphFacade g, int currentN, Map<Integer, Double> probabilityList, Double sumProbabilities){
+	public void InverseTranformSampling(GraphFacade g, int currentN, Map<Integer, Double> probabilityList, double sumProbabilities){
 		Random random = new Random();
 		double u = random.nextDouble();
 		double cumulativeProbability = 0;
@@ -115,12 +122,11 @@ class Ant {
 
     public boolean chooseNextNode() {
     	GraphFacade g = GraphFacade.getInstance();
+    	boolean completeCycle = false;
     	Map<Integer, Double> probabilityList = new LinkedHashMap<>();
-    	double sumProbabilities = 0;
     	ArrayList<Integer> visitedN = new ArrayList<>();
     	int currentN = currentCycle.getLastNode();
-    	sumProbabilities = getNodes(g, currentN, visitedN, probabilityList);
-    	boolean completeCycle = false;
+    	double sumProbabilities = getNodes(g, currentN, visitedN, probabilityList);
     	
     	// There are still nodes to visit
     	if(AreThereUnvisitedNodes()) {

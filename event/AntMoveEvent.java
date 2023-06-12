@@ -16,9 +16,9 @@ public class AntMoveEvent extends Event {
 
     @Override
     public void executeEvent() {
-        if (antID == 0) {
-            System.out.println("Ant " + antID + " moves at time " + getEventTime());
-        }
+        //if (antID == 0) {
+        //    System.out.println("Ant " + antID + " moves at time " + getEventTime());
+        //}
         getPec().setTime(getEventTime());
         
         if (antCol.moveAnt(antID)) { // completed cycle
@@ -37,8 +37,8 @@ public class AntMoveEvent extends Event {
     public double setNextEventTime() {
         Random random = new Random();
         double next = random.nextDouble();
-        System.out.println("Ant " + antID + " moves at time " + getEventTime() + " with next " + next);
-        double newEventTime = getPec().getTime() + (-antCol.meanTraverseTime(antID) * Math.log(1.0 - next));
+        // System.out.println("Ant " + antID + " moves at time " + getEventTime() + " with next " + next);
+        double newEventTime = getEventTime() + (-antCol.meanTraverseTime(antID) * Math.log(1.0 - next));
         return newEventTime;
     }
 }

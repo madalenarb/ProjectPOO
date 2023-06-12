@@ -10,6 +10,7 @@ public class EventManager{
     private double currentTime;
     private int moveEventCounter;
     private int pheromoneEventCounter;
+    private int printEventCounter;
 
     public static EventManager getInstance() {
         if (managerInstance == null) {
@@ -27,6 +28,7 @@ public class EventManager{
         this.currentTime = 0;
         this.moveEventCounter = 0;
         this.pheromoneEventCounter = 0;
+        this.printEventCounter = 0;
     }
     
     public int getMoveEventCounter() {
@@ -35,6 +37,10 @@ public class EventManager{
 
     public int getPheromoneEventCounter() {
         return pheromoneEventCounter;
+    }
+    
+    public int getPrintEventCounter() {
+        return printEventCounter;
     }
 
     public void setTime(double time) {
@@ -52,11 +58,11 @@ public class EventManager{
     }
 
     public Event getEvent(){
-        return this.pec.poll();
+        return pec.poll();
     }
     
     public void initializePEC() {
-    	for(int i=0; i < ParameterReader.getN(); i++) {
+    	for(int i=0; i < ParameterReader.getNu(); i++) {
     		addEvent(new AntMoveEvent(currentTime, i));
     	}
         addEvent(new PrintEvent(ParameterReader.getTau()/20));
@@ -66,16 +72,19 @@ public class EventManager{
         this.moveEventCounter++;
     }
 
-
     public void incrementPheromoneEvent() {
         this.pheromoneEventCounter++;
     }
     
+    public void incrementPrintEvent() {
+        this.printEventCounter++;
+    }
+    
     public void run() {
         while (!pec.isEmpty() && currentTime <= ParameterReader.getTau()) {
-            Event event = pec.poll();
+            Event event = getEvent();
             event.executeEvent();
         }
-        System.out.println("Simulation ended at time " + currentTime);
+        // System.out.println("Simulation ended at time " + currentTime);
     }
 }

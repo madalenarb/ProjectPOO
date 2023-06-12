@@ -1,13 +1,14 @@
 package cycle;
+
 import java.util.LinkedList;
 import java.util.ListIterator;
-import java.util.Random;
 import java.util.Iterator;
 import graph.GraphFacade;
 import main.ParameterReader;
 import java.util.BitSet;
 import event.EventManager;
 import event.PheromoneEvaporationEvent;
+import java.util.Random;
 
 public class Cycle {
 	private LinkedList<Integer> cycle;
@@ -19,19 +20,27 @@ public class Cycle {
         currentCycleWeight = 0;
     }
 	
+	public LinkedList<Integer> getCycleList() {
+		return cycle;
+	}
+	
 	public void addNode(int nod) {
 		cycle.add(nod);
     }
 	
 	public int getLastNode() {
-		return cycle.getLast();
+		if(!cycle.isEmpty()) {
+			return cycle.getLast();
+		}
+		return -1;
 	}
 	
-	public boolean isLastNode(int element) {
-		if(cycle.getLast() != null) {
-			return (cycle.getLast()==element);
+	public boolean isLastNode(Integer element) {
+		if(element != null) {
+			int el = element.intValue();
+			return (getLastNode() == el);
 		}
-		else {return false;}
+		return false;
 	}
 	
 	public int getCurrentCycleWeight() {
@@ -42,7 +51,7 @@ public class Cycle {
     	currentCycleWeight = currentCycleWeight + increment;
     }
 	
-	public int removeCycle(int stopNod, BitSet nVNodes) {
+	public void removeCycle(int stopNod, BitSet nVNodes) {
 		GraphFacade g = GraphFacade.getInstance();
 		ListIterator<Integer> iterator = cycle.listIterator(cycle.size());
 		int reduceWeight = 0;
@@ -60,14 +69,10 @@ public class Cycle {
 			iterator.remove();
 		}
 		currentCycleWeight -= reduceWeight;
-		return reduceWeight;
 	}
 	
 	public void layP(EventManager PEC) {
 		GraphFacade gr = GraphFacade.getInstance();
-		if(currentCycleWeight == 0) {
-			return;
-		}
 		float p = ParameterReader.getGamma()*(gr.getTotalWeight()/currentCycleWeight);
 		Iterator<Integer> iterator = cycle.iterator();
 		Integer previousNode = null;
@@ -94,9 +99,10 @@ public class Cycle {
 					Random random = new Random();
         			double next = random.nextDouble();
         			double newEventTime = PEC.getTime() + (-ParameterReader.getEta()*Math.log(1.0-next));//get PEC time
-					PEC.addEvent(new PheromoneEvaporationEvent(newEventTime,previousNode, currentNode));
+					PEC.addEvent(new PheromoneEvaporationEvent(newEventTime, previousNode, currentNode));
 				}
 			}
+			
 			previousNode = currentNode;
 		}
 	}
@@ -105,7 +111,7 @@ public class Cycle {
 		System.out.print("{");
     	Iterator<Integer> iterator = cycle.iterator();
         while (iterator.hasNext()) {
-        	Integer current = iterator.next();
+        	Integer current = iterator.next() + 1;
             System.out.print(current);
             if(iterator.hasNext()) {
             	System.out.print(",");

@@ -1,24 +1,23 @@
 package ant;
-import java.util.Comparator;
-import java.util.PriorityQueue;
 import main.ParameterReader;
 import cycle.Cycle;
 import event.EventManager;
-
+import java.util.Comparator;
+import java.util.TreeSet;
 
 public class AntColony {
 	private static AntColony instance;
 	private Ant[] ants;
-	private PriorityQueue<Cycle> hamiltonianCycleQueue;
+	private TreeSet<Cycle> hamiltonianCycleQueue;
 	private Cycle best;
 	
 	private AntColony() {
 		int n = ParameterReader.getNu();
 		ants = new Ant[n];
 		for(int i = 0; i < n; i++) {
-			ants[i] = new Ant(i);
+			ants[i] = new Ant();
 		}
-		hamiltonianCycleQueue = new PriorityQueue<>(Comparator.comparingInt(Cycle::getCurrentCycleWeight).reversed());
+		hamiltonianCycleQueue = new TreeSet<>(Comparator.comparingInt(Cycle::getCurrentCycleWeight).thenComparing(Comparator.comparing(Cycle::hashCode)));
 		best = null;
 	}
 	
@@ -47,14 +46,25 @@ public class AntColony {
 	}
 	
 	public void addCycleToPQ(Cycle c){
-		hamiltonianCycleQueue.offer(c);
+		
+		if(c.getCycleList().equals(best.getCycleList())) {
+			return;
+		}
+		
+		for (Cycle element : hamiltonianCycleQueue) {
+			if(c.getCycleList().equals(element.getCycleList())) {
+				return;
+			}
+        }
+		
+		hamiltonianCycleQueue.add(c);
 		if(hamiltonianCycleQueue.size() > 5) {
-			hamiltonianCycleQueue.poll();
+			hamiltonianCycleQueue.pollLast();
 		}
 	}
 	
 	public boolean moveAnt(int i) {
-		boolean completeCycle = !ants[i].chooseNextNode();
+		boolean completeCycle = ants[i].chooseNextNode();
 		if(completeCycle) { // the ant completed a cycle
 			// Compare the cycle with the best cycle
 			if(best == null) {
@@ -76,6 +86,7 @@ public class AntColony {
 	
 	public void restartPath(int i) {
 		ants[i].setCurrentCycle(new Cycle());
+		ants[i].resetNonVisitedNodes();
 	}
 	
 	public void antLaysPheromones(int i, EventManager PEC) {

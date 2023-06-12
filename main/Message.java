@@ -1,6 +1,6 @@
 package main;
 
-class Message{
+class Message {
 	/**
      * Prints an error message for a command not found and exits the program.
      *

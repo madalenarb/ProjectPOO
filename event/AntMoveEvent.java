@@ -6,19 +6,17 @@ import ant.AntColony;
 
 public class AntMoveEvent extends Event {
     private int antID;
-    private AntColony antCol;
 
     public AntMoveEvent(double time, int antID) {
         super(time);
         this.antID = antID;
-        this.antCol = AntColony.getInstance();
     }
 
     @Override
     public void executeEvent() {
-        //if (antID == 0) {
-        //    System.out.println("Ant " + antID + " moves at time " + getEventTime());
-        //}
+        
+    	AntColony antCol = AntColony.getInstance();
+    	
         getPec().setTime(getEventTime());
         
         if (antCol.moveAnt(antID)) { // completed cycle
@@ -35,9 +33,12 @@ public class AntMoveEvent extends Event {
 
     @Override
     public double setNextEventTime() {
+    	
+    	AntColony antCol = AntColony.getInstance();
+    	
         Random random = new Random();
         double next = random.nextDouble();
-        // System.out.println("Ant " + antID + " moves at time " + getEventTime() + " with next " + next);
+        
         double newEventTime = getEventTime() + (-antCol.meanTraverseTime(antID) * Math.log(1.0 - next));
         return newEventTime;
     }

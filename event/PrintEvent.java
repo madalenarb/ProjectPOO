@@ -4,15 +4,14 @@ import ant.AntColony;
 import main.ParameterReader;
 
 public class PrintEvent extends Event {
-    private AntColony antColony;
 
     public PrintEvent(double time) {
         super(time);
-        this.antColony = AntColony.getInstance();
     }
 
     @Override
     public void executeEvent() {
+    	AntColony antColony = AntColony.getInstance();
     	
     	getPec().setTime(getEventTime());
     	getPec().incrementPrintEvent();

@@ -11,7 +11,7 @@ JAVADOC = javadoc
 SRCDIRS = ant cycle event graph main
 
 # Java source files (excluding Main.java)
-SRCS = $(foreach dir,$(SRCDIRS),$(wildcard $(dir)/*.java))
+SRCS = $(shell find . -name "*.java")
 
 # Java class directory
 CLASSDIR = classes
@@ -71,4 +71,8 @@ openjavadocWindows: javadoc
 clean:
 	$(RM) -r $(CLASSDIR) $(JARFILE) $(MANIFEST) $(DOCDIR)
 
-.PHONY: clean javadoc openjavadocUbuntu openjavadocMac openjavadocWindows
+# Clean the SIM folder
+clean-sim:
+	$(RM) -r SIM
+
+.PHONY: clean javadoc openjavadocUbuntu openjavadocMac openjavadocWindows clean-sim

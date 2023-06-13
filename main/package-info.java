@@ -36,6 +36,11 @@
  *     </ul>
  *   </li>
  *   <li>{@link main.utils.CmdTextFormatter}: A class that defines ANSI escape sequences for text formatting in the command line. It provides constants for text styling, such as bold, underline, and colors.</li>
+ *   <li>{@link main.utils.ConsolePrinter}: A class that implements the {@link main.utils.Printer} interface and provides functionality for printing text to the console.</li>
+ *   <li>{@link main.utils.ConsoleFilePrinters}: A class that provides functionality for printing text to both the console and a file. It supports different printer types, such as console-only, file-only, or both.</li>
+ *   <li>{@link main.utils.FilePrinter}: A class that implements the {@link main.utils.Printer} interface and provides functionality for printing text to a file.</li>
+ *   <li>{@link main.utils.Printer}: An interface that defines methods for printing text.</li>
+ *   <li>{@link main.utils.PrinterType}: An enum that represents the type of printer to use (CONSOLE, FILE, or BOTH).</li>
  * </ul>
  *
  * <p>By utilizing the classes in this package, the Ant Colony Optimization algorithm can be executed and controlled
@@ -52,5 +57,10 @@
  * @see main.ParameterReader
  * @see main.utils.MessageError
  * @see main.utils.CmdTextFormatter
+ * @see main.utils.ConsolePrinter
+ * @see main.utils.ConsoleFilePrinters
+ * @see main.utils.FilePrinter
+ * @see main.utils.Printer
+ * @see main.utils.PrinterType
  */
 package main;

@@ -15,8 +15,8 @@
 package main;
 
 import event.EventManager;
-import main.WriteFile;
-import main.util.Message;
+import main.utils.ConsoleFilePrinters;
+import main.utils.Printer;
 
 import java.io.IOException;
 
@@ -36,9 +36,9 @@ public class Main {
         ParameterReader.readingMode(args[0]);
         if(ParameterReader.getReadingMode() == 0){
             if(args.length < 12){
-                main.utils.Message.CommandNotFound("Too few arguments", args[0]);
+                main.utils.MessageError.CommandNotFound("Too few arguments", args[0]);
             } else if(args.length > 12){
-                main.utils.Message.CommandNotFound("Too many arguments", args[0]);
+                main.utils.MessageError.CommandNotFound("Too many arguments", args[0]);
             } else {
                 ParameterReader.readParameters(args);
             }
@@ -46,9 +46,9 @@ public class Main {
 
         else if(ParameterReader.getReadingMode() == 1){
             if(args.length < 2){
-                main.utils.Message.CommandNotFound("Too few arguments", args[0]);
+                main.utils.MessageError.CommandNotFound("Too few arguments", args[0]);
             } else if(args.length > 2){
-                main.utils.Message.CommandNotFound("Too many arguments", args[0]);
+                main.utils.MessageError.CommandNotFound("Too many arguments", args[0]);
             } else {
                 ParameterReader.readInputFile(args[1]);
             }
@@ -59,7 +59,5 @@ public class Main {
         EventManager eventManager = EventManager.getInstance();
         eventManager.initializePEC();
         eventManager.run();
-
-        new WriteFile("test.txt");
     }
 }

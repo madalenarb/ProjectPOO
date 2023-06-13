@@ -1,10 +1,9 @@
 package main;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-
 import graph.GraphFacade;
-import main.utils.Message;
+import main.utils.MessageError;
+import main.utils.OutputFile;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -56,7 +55,7 @@ public class ParameterReader {
         } else if(mode.contains("-f")){
             readingMode = 1;
         } else {
-            Message.CommandNotFound("Reading Mode not found", mode);
+            MessageError.CommandNotFound("Reading Mode not found", mode);
         }
     }
 
@@ -188,9 +187,14 @@ public class ParameterReader {
      */
     public static void readInputFile(String inputFile){
         if (!inputFile.endsWith(".txt")) {
-            Message.FileExtensionNotSupported("File extension must be .txt", inputFile);
+            System.out.println("File extension must be .txt");
+            MessageError.FileExtensionNotSupported("File extension must be .txt", inputFile);
         }
-         try(BufferedReader br = new BufferedReader(new FileReader(inputFile))){
+        
+        OutputFile.initialize(inputFile);
+
+
+        try(BufferedReader br = new BufferedReader(new FileReader(inputFile))){
             int lineCount = 0;
             String line = br.readLine();
             GraphFacade g = null;
@@ -200,7 +204,7 @@ public class ParameterReader {
                     String[] parameters = line.trim().split("\\s+");
                     int numberofParameters = parameters.length;
                     if(parameters.length != 10){
-                        Message.WrongNumberOfArguments("Wrong number of arguments in the input file, it must be 10, instead of " + numberofParameters + "");
+                        MessageError.WrongNumberOfArguments("Wrong number of arguments in the input file, it must be 10, instead of " + numberofParameters + "");
                     }
                     n = Integer.parseInt(parameters[0]);
                     System.out.println("n: " + n);
@@ -228,7 +232,7 @@ public class ParameterReader {
                 else {
                     String[] weights = line.trim().split("\\s+");
                     if(weights.length != n){
-                        Message.WrongNumberOfArguments("Wrong number of edges in the input file, it must be " + n + " instead of " + weights.length + "");
+                        MessageError.WrongNumberOfArguments("Wrong number of edges in the input file, it must be " + n + " instead of " + weights.length + "");
                     }
                     if(g != null) {
                     	g.fillGraphFileMode(weights, lineCount);
@@ -238,13 +242,7 @@ public class ParameterReader {
                 line = br.readLine();
             }
         } catch (IOException e) {
-            try {
-                Message.FileNotFoundWithInput(inputFile);
-            } catch (FileNotFoundException e1) {
-                // Handle the exception here without printing the stack trace
-                System.err.println("File not found with input: " + e1.getMessage());
-                // Add any additional handling logic as needed
-            }
+            MessageError.FileNotFoundWithInput(inputFile);
         }      
     }
     

@@ -28,7 +28,7 @@
  *       <li>{@code printParameters()}: Prints the input parameters and the graph.</li>
  *     </ul>
  *   </li>
- *   <li>{@link main.utils.Message}: A utility class for printing error messages and correct usage instructions. It includes methods to display error messages and provide guidance on correct command usage.
+ *   <li>{@link main.utils.MessageError}: A utility class for printing error messages and correct usage instructions. It includes methods to display error messages and provide guidance on correct command usage.
  *     <ul>
  *       <li>{@code CommandNotFound(String message, String command)}: Prints an error message for a command not found and exits the program.</li>
  *       <li>{@code WrongNumberOfArguments(String message)}: Prints an error message for the wrong number of arguments and exits the program.</li>
@@ -50,7 +50,7 @@
  *
  * @see main.Main
  * @see main.ParameterReader
- * @see main.utils.Message
+ * @see main.utils.MessageError
  * @see main.utils.CmdTextFormatter
  */
 package main;

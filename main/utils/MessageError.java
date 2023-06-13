@@ -1,53 +1,44 @@
 package main.utils;
 
-import java.io.FileNotFoundException;
-
 /**
  * The Message class provides methods for printing error messages and the correct usage instructions.
  */
-public class Message {
+public class MessageError {
 	/**
      * Throws an exception for a command not found.
      *
      * @param message the error message
      * @param command the invalid command
-     * @throws IllegalArgumentException
      */
-    public static void CommandNotFound(String message, String command) throws IllegalArgumentException{
+    public static void CommandNotFound(String message, String command){
         System.out.println(CmdTextFormatter.RED + "(!!!) WARNING ");
         System.out.println(CmdTextFormatter.RESET + message + ": " + command + "\n \n\n" +
                 CorrectUsage());
-        throw new IllegalArgumentException(message);
+        System.exit(1);
     }
 
     /**
      * Throws an exception for the wrong number of arguments.
      *
      * @param message the error message
-     * @throws IllegalArgumentException
      */
-    public static void WrongNumberOfArguments(String message) throws IllegalArgumentException{
+    public static void WrongNumberOfArguments(String message){
         System.out.println(CmdTextFormatter.RED + "(!!!) WARNING ");
         System.out.println(CmdTextFormatter.RESET + message + "\n"
                 + CorrectUsage());
-        throw new IllegalArgumentException(message);
+        System.exit(1);
     }
 
     /**
      * Throws an exception for a file not found.
      *
      * @param filePath the invalid file path
-     * @throws FileNotFoundException
      */
-    public static void FileNotFoundWithInput(String filePath) throws FileNotFoundException {
-        try {
-            throw new FileNotFoundException("File not found: " + filePath);
-        } catch (FileNotFoundException e) {
-            System.out.println(CmdTextFormatter.RED + "(!!!) WARNING ");
-            System.out.println(CmdTextFormatter.RESET + e.getMessage() + ": " + filePath + "\n \n\n" +
-                    CorrectUsage());
-            throw new IllegalArgumentException(e.getMessage());
-        }
+    public static void FileNotFoundWithInput(String filePath){
+        System.out.println(CmdTextFormatter.RED + "(!!!) WARNING ");
+        System.out.println(CmdTextFormatter.RESET + "File not found: " + filePath + "\n \n\n" +
+                CorrectUsage());
+        System.exit(1);
     }
 
     /**
@@ -55,13 +46,12 @@ public class Message {
      *
      * @param message the error message
      * @param filePath the invalid file path
-     * @throws IllegalArgumentException
      */    
-    public static void FileExtensionNotSupported(String message, String filePath) throws IllegalArgumentException{
+    public static void FileExtensionNotSupported(String message, String filePath){
         System.out.println(CmdTextFormatter.RED + "(!!!) WARNING ");
         System.out.println(CmdTextFormatter.RESET + message + ": " + filePath + "\n \n\n" +
                 CorrectUsage());
-        throw new IllegalArgumentException(message);
+        System.exit(1);
     }
 
     /**
@@ -83,5 +73,12 @@ public class Message {
                 "nu:\t ant colony size" + "\n" +
                 "tau:\t final instant of the simulation";
         return usage;
+    }
+
+    public static void FileFormatNotSupported(String string, String inputFile) {
+        System.out.println(CmdTextFormatter.RED + "(!!!) WARNING ");
+        System.out.println(CmdTextFormatter.RESET + string + ": " + inputFile + "\n \n\n" +
+                CorrectUsage());
+        System.exit(1);
     }
 }

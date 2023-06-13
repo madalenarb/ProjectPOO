@@ -1,6 +1,9 @@
 package main;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+
 import graph.GraphFacade;
 import java.io.FileReader;
 import java.io.IOException;
@@ -52,8 +55,7 @@ public class ParameterReader {
         } else if(mode.contains("-f")){
             readingMode = 1;
         } else {
-            Message.CommandNotFound("Command not found", mode);
-            System.exit(0);
+            Message.CommandNotFound("Reading Mode not found", mode);
         }
     }
 
@@ -184,8 +186,10 @@ public class ParameterReader {
      * @param inputFile the file from which the parameters are read
      */
     public static void readInputFile(String inputFile){
-    	
-        try(BufferedReader br = new BufferedReader(new FileReader(inputFile))){
+        if (!inputFile.endsWith(".txt")) {
+            Message.FileExtensionNotSupported("File extension must be .txt", inputFile);
+        }
+         try(BufferedReader br = new BufferedReader(new FileReader(inputFile))){
             int lineCount = 0;
             String line = br.readLine();
             GraphFacade g = null;
@@ -232,10 +236,15 @@ public class ParameterReader {
                 lineCount++;
                 line = br.readLine();
             }
-        } catch (IOException e){
-            System.err.println("Error reading file" + e.getMessage());
-        }
-        
+        } catch (IOException e) {
+            try {
+                Message.FileNotFoundWithInput(inputFile);
+            } catch (FileNotFoundException e1) {
+                // Handle the exception here without printing the stack trace
+                System.err.println("File not found with input: " + e1.getMessage());
+                // Add any additional handling logic as needed
+            }
+        }      
     }
     
     /**

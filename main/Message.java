@@ -1,32 +1,67 @@
 package main;
 
+import java.io.FileNotFoundException;
+
 /**
  * The Message class provides methods for printing error messages and the correct usage instructions.
  */
 class Message {
 	/**
-     * Prints an error message for a command not found and exits the program.
+     * Throws an exception for a command not found.
      *
      * @param message the error message
      * @param command the invalid command
+     * @throws IllegalArgumentException
      */
-    public static void CommandNotFound(String message, String command){
+    public static void CommandNotFound(String message, String command) throws IllegalArgumentException{
         System.out.println(CmdTextFormatter.RED + "(!!!) WARNING ");
         System.out.println(CmdTextFormatter.RESET + message + ": " + command + "\n \n\n" +
                 CorrectUsage());
-        System.exit(0);
+        throw new IllegalArgumentException(message);
     }
 
     /**
-     * Prints an error message for the wrong number of arguments and exits the program.
+     * Throws an exception for the wrong number of arguments.
      *
      * @param message the error message
+     * @throws IllegalArgumentException
      */
-    public static void WrongNumberOfArguments(String message){
+    public static void WrongNumberOfArguments(String message) throws IllegalArgumentException{
         System.out.println(CmdTextFormatter.RED + "(!!!) WARNING ");
         System.out.println(CmdTextFormatter.RESET + message + "\n"
                 + CorrectUsage());
-        System.exit(0);
+        throw new IllegalArgumentException(message);
+    }
+
+    /**
+     * Throws an exception for a file not found.
+     *
+     * @param filePath the invalid file path
+     * @throws FileNotFoundException
+     */
+    public static void FileNotFoundWithInput(String filePath) throws FileNotFoundException {
+        try {
+            throw new FileNotFoundException("File not found: " + filePath);
+        } catch (FileNotFoundException e) {
+            System.out.println(CmdTextFormatter.RED + "(!!!) WARNING ");
+            System.out.println(CmdTextFormatter.RESET + e.getMessage() + ": " + filePath + "\n \n\n" +
+                    CorrectUsage());
+            throw new IllegalArgumentException(e.getMessage());
+        }
+    }
+
+    /**
+     * Throws an exception for a file extension not supported.
+     *
+     * @param message the error message
+     * @param filePath the invalid file path
+     * @throws IllegalArgumentException
+     */    
+    public static void FileExtensionNotSupported(String message, String filePath) throws IllegalArgumentException{
+        System.out.println(CmdTextFormatter.RED + "(!!!) WARNING ");
+        System.out.println(CmdTextFormatter.RESET + message + ": " + filePath + "\n \n\n" +
+                CorrectUsage());
+        throw new IllegalArgumentException(message);
     }
 
     /**

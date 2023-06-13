@@ -25,8 +25,8 @@ import event.EventManager;
 public class Main {
 	
     /** 
-     * @param args
-     */
+     * The entry point for running the Ant Colony Optimization algorithm.
+    */
     public static void main(String[] args){
 		
         ParameterReader.readingMode(args[0]);

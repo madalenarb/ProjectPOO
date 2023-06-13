@@ -15,6 +15,9 @@
 package main;
 
 import event.EventManager;
+import main.WriteFile;
+
+import java.io.IOException;
 
 /**
  * The main class for the Ant Colony Optimization algorithm.
@@ -27,7 +30,7 @@ public class Main {
     /** 
      * The entry point for running the Ant Colony Optimization algorithm.
     */
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException {
 		
         ParameterReader.readingMode(args[0]);
         if(ParameterReader.getReadingMode() == 0){
@@ -39,7 +42,7 @@ public class Main {
                 ParameterReader.readParameters(args);
             }
         }
-        
+
         else if(ParameterReader.getReadingMode() == 1){
             if(args.length < 2){
                 Message.CommandNotFound("Too few arguments", args[0]);
@@ -51,9 +54,11 @@ public class Main {
         }
         
         ParameterReader.printParameters();
-        
+
         EventManager eventManager = EventManager.getInstance();
         eventManager.initializePEC();
         eventManager.run();
+
+        new WriteFile("test.txt");
     }
 }

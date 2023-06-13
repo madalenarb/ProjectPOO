@@ -7,7 +7,6 @@ import event.EventManager;
 import graph.GraphFacade;
 import main.ParameterReader;
 import java.util.Random;
-//import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**

@@ -29,7 +29,7 @@ MANIFEST = manifest.txt
 MAINCLASS = main.Main
 
 # Documentation directory
-DOCDIR = javadoc
+DOCDIR = JDOC
 
 # Default target
 default: $(JARFILE)

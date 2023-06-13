@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 
 import graph.GraphFacade;
-import main.util.Message;
+import main.utils.Message;
 
 import java.io.FileReader;
 import java.io.IOException;

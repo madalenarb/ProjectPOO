@@ -28,14 +28,14 @@
  *       <li>{@code printParameters()}: Prints the input parameters and the graph.</li>
  *     </ul>
  *   </li>
- *   <li>{@link main.Message}: A utility class for printing error messages and correct usage instructions. It includes methods to display error messages and provide guidance on correct command usage.
+ *   <li>{@link main.util.Message}: A utility class for printing error messages and correct usage instructions. It includes methods to display error messages and provide guidance on correct command usage.
  *     <ul>
  *       <li>{@code CommandNotFound(String message, String command)}: Prints an error message for a command not found and exits the program.</li>
  *       <li>{@code WrongNumberOfArguments(String message)}: Prints an error message for the wrong number of arguments and exits the program.</li>
  *       <li>{@code CorrectUsage()}: Returns the correct usage instructions for the program.</li>
  *     </ul>
  *   </li>
- *   <li>{@link main.CmdTextFormatter}: A class that defines ANSI escape sequences for text formatting in the command line. It provides constants for text styling, such as bold, underline, and colors.</li>
+ *   <li>{@link main.util.CmdTextFormatter}: A class that defines ANSI escape sequences for text formatting in the command line. It provides constants for text styling, such as bold, underline, and colors.</li>
  * </ul>
  *
  * <p>By utilizing the classes in this package, the Ant Colony Optimization algorithm can be executed and controlled

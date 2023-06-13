@@ -15,6 +15,7 @@
 package main;
 
 import event.EventManager;
+import main.util.Message;
 
 /**
  * The main class for the Ant Colony Optimization algorithm.

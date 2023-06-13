@@ -5,6 +5,8 @@ import java.util.ListIterator;
 import java.util.Iterator;
 import graph.GraphFacade;
 import main.ParameterReader;
+import main.utils.ConsoleFilePrinters;
+
 import java.util.BitSet;
 import event.EventManager;
 import event.PheromoneEvaporationEvent;
@@ -174,15 +176,17 @@ public class Cycle {
      * It prints the elements as a comma separated string surrounded by braces.
      */
 	public void printElements() {
-		System.out.print("{");
-    	Iterator<Integer> iterator = cycle.iterator();
-        while (iterator.hasNext()) {
-        	Integer current = iterator.next() + 1;
-            System.out.print(current);
-            if(iterator.hasNext()) {
-            	System.out.print(",");
-            }
-        }
-        System.out.print("}:" + currentCycleWeight);
-    }
+		StringBuilder sb = new StringBuilder();
+		sb.append("{");
+		Iterator<Integer> iterator = cycle.iterator();
+		while (iterator.hasNext()) {
+			Integer current = iterator.next() + 1;
+			sb.append(current);
+			if(iterator.hasNext()) {
+				sb.append(",");
+			}
+		}
+		sb.append("}:" + currentCycleWeight);
+		ConsoleFilePrinters.getInstance().println(sb.toString());
+	}
 }

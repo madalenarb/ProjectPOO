@@ -2,9 +2,9 @@ package main.utils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+
 
 /**
  * The OutputFile class provides methods for printing the results of the simulation.
@@ -22,22 +22,26 @@ public class OutputFile {
         File file = new File(inputFile.replaceAll("\\s", ""));
         String fileName = file.getName();
         if (!fileName.matches("input\\d+\\.txt")) {
-            MessageError.FileFormatNotSupported("File Extension not found", fileName);
+            MessageError.FileFormatNotSupported("File Format is wrong", fileName);
         }
-
+    
         // Create the SIM folder if it doesn't exist
         File simFolder = new File("SIM");
         // If the directory does not exist, create it
         if (!simFolder.exists()) {
             simFolder.mkdir();
+            System.out.println("SIM folder created");
         }
-        String outputFileName = fileName.replaceFirst("input(\\d+)\\.txt", "simscenario$1.txt");
+        String outputFile = "SIM/" + fileName.replaceFirst("input(\\d+)\\.txt", "simscenario$1.txt");
+        System.out.println("Output file: " + outputFile);
         try {
-            printStream = new PrintStream(new FileOutputStream(outputFileName));
+            System.out.println("Output file: " + outputFile);
+            ConsoleFilePrinters.initialize(outputFile, PrinterType.BOTH);
         } catch (FileNotFoundException e) {
-            MessageError.FileNotFoundWithInput(outputFileName);
+            MessageError.FileNotFoundWithInput(outputFile);
         }
     }
+    
 
     /**
      * Closes the output file.

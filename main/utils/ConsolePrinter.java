@@ -1,7 +1,16 @@
 package main.utils;
 
-public class ConsolePrinter extends Printer {
+public class ConsolePrinter implements Printer {
     public ConsolePrinter() {
-        this.printStream = System.out;
+    }
+
+    @Override
+    public void println(String text) {
+        System.out.println(text);
+    }
+
+    @Override
+    public void printf(String format, Object... args) {
+        System.out.printf(format, args);
     }
 }

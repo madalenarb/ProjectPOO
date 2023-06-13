@@ -2,6 +2,7 @@ package event;
 
 import ant.AntColony;
 import main.ParameterReader;
+import main.utils.ConsoleFilePrinters;
 
 /**
  * Represents a print event in the simulation.
@@ -21,25 +22,27 @@ public class PrintEvent extends Event {
      * Executes the print event.
      */
     @Override
+
     public void executeEvent() {
-    	AntColony antColony = AntColony.getInstance();
-    	
-    	getPec().setTime(getEventTime());
-    	getPec().incrementPrintEvent();
-    	int printEventNumber = getPec().getPrintEventCounter();
-    	
-        System.out.println("Observation " + printEventNumber + ": ");
-        System.out.printf("%-3s : %-20s\n", "Present instant", getEventTime());
-        System.out.printf("%-3s : %-20s\n", "Number of move events", getPec().getMoveEventCounter());
-        System.out.printf("%-3s : %-20s\n", "Number of evaporation events", getPec().getPheromoneEventCounter());
-        System.out.printf("%-3s : \n", "Top candidate cycles");
+        AntColony antColony = AntColony.getInstance();
+        
+        getPec().setTime(getEventTime());
+        getPec().incrementPrintEvent();
+        int printEventNumber = getPec().getPrintEventCounter();
+        
+        ConsoleFilePrinters.getInstance().println("Observation " + printEventNumber + ": ");
+        ConsoleFilePrinters.getInstance().printf("%-3s : %-20s\n", "Present instant", getEventTime());
+        ConsoleFilePrinters.getInstance().printf("%-3s : %-20s\n", "Number of move events", getPec().getMoveEventCounter());
+        ConsoleFilePrinters.getInstance().printf("%-3s : %-20s\n", "Number of evaporation events", getPec().getPheromoneEventCounter());
+        ConsoleFilePrinters.getInstance().printf("%-3s : \n", "Top candidate cycles");
         antColony.printTopCycles();
-        System.out.printf("%-3s :\n", "Best Hamiltonian cycle");
+        ConsoleFilePrinters.getInstance().printf("%-3s :\n", "Best Hamiltonian cycle");
         antColony.printBestHamiltonianCycle();
-        System.out.println();
+        ConsoleFilePrinters.getInstance().println("");
         
         getPec().addEvent(new PrintEvent(setNextEventTime()));
     }
+
 
     
     /**

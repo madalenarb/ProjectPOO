@@ -1,4 +1,4 @@
-package main;
+package main.util;
 
 /**
  * The CmdTextFormatter class provides constants for formatting command line text output.

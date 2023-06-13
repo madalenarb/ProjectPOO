@@ -1,11 +1,11 @@
-package main;
+package main.util;
 
 import java.io.FileNotFoundException;
 
 /**
  * The Message class provides methods for printing error messages and the correct usage instructions.
  */
-class Message {
+public class Message {
 	/**
      * Throws an exception for a command not found.
      *

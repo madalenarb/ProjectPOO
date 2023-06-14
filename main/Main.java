@@ -15,8 +15,6 @@
 package main;
 
 import event.EventManager;
-import main.utils.ConsoleFilePrinters;
-import main.utils.Printer;
 
 import java.io.IOException;
 

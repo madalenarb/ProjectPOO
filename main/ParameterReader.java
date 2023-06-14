@@ -1,6 +1,7 @@
 package main;
 
 import java.io.BufferedReader;
+import java.io.Console;
 
 import graph.GraphFacade;
 import main.utils.ConsoleFilePrinters;
@@ -208,25 +209,25 @@ public class ParameterReader {
                         MessageError.WrongNumberOfArguments("Wrong number of arguments in the input file, it must be 10, instead of " + numberofParameters + "");
                     }
                     n = Integer.parseInt(parameters[0]);
-                    System.out.println("n: " + n);
+                    // System.out.println("n: " + n);
                     n1 = Integer.parseInt(parameters[1])-1;
-                    System.out.println("n1: " + n1);
+                    // System.out.println("n1: " + n1);
                     alpha = Float.parseFloat(parameters[2]);
-                    System.out.println("alpha: " + alpha);
+                    // System.out.println("alpha: " + alpha);
                     beta = Float.parseFloat(parameters[3]);
-                    System.out.println("beta: " + beta);
+                    // System.out.println("beta: " + beta);
                     delta = Float.parseFloat(parameters[4]);
-                    System.out.println("delta: " + delta);
+                    // System.out.println("delta: " + delta);
                     eta = Float.parseFloat(parameters[5]);
-                    System.out.println("eta: " + eta);
+                    // System.out.println("eta: " + eta);
                     rho = Float.parseFloat(parameters[6]);
-                    System.out.println("rho: " + rho);
+                    // System.out.println("rho: " + rho);
                     gamma = Float.parseFloat(parameters[7]);
-                    System.out.println("gamma: " + gamma);
+                    // System.out.println("gamma: " + gamma);
                     nu = Integer.parseInt(parameters[8]);
-                    System.out.println("nu: " + nu);
+                    // System.out.println("nu: " + nu);
                     tau = Float.parseFloat(parameters[9]);
-                    System.out.println("tau: " + tau);
+                    // System.out.println("tau: " + tau);
                     // Create graph with Hamiltonian cycle
                     g = GraphFacade.getInstance();
                 } 
@@ -265,6 +266,7 @@ public class ParameterReader {
         ConsoleFilePrinters.getInstance().println("\t\t\t" + tau + " : final instant");
         ConsoleFilePrinters.getInstance().println("\twith graph:");
         GraphFacade.getInstance().printAntGraph();
+        ConsoleFilePrinters.getInstance().println("");
     }
     
 }

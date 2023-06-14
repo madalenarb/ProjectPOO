@@ -30,12 +30,9 @@ public class OutputFile {
         // If the directory does not exist, create it
         if (!simFolder.exists()) {
             simFolder.mkdir();
-            System.out.println("SIM folder created");
         }
         String outputFile = "SIM/" + fileName.replaceFirst("input(\\d+)\\.txt", "simscenario$1.txt");
-        System.out.println("Output file: " + outputFile);
         try {
-            System.out.println("Output file: " + outputFile);
             ConsoleFilePrinters.initialize(outputFile, PrinterType.BOTH);
         } catch (FileNotFoundException e) {
             MessageError.FileNotFoundWithInput(outputFile);

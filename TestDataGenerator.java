@@ -4,11 +4,12 @@ import java.io.PrintWriter;
 import java.util.Random;
 
 public class TestDataGenerator {
-    private static final int MAX_NODES = 8;
+    private static final int MAX_NODES = 3090;
+    private static final int MIN_NODES = 2000;
     private static final int MAX_WEIGHT = 10;
     private static final String TESTS_DIRECTORY = "TESTS";
     private static final int MAX_TIME = 5000;
-    private static final int numberOfTests = 2;
+    private static final int numberOfTests = 1;
 
     public static void main(String[] args) {
         int fileIndex = 1;
@@ -19,7 +20,7 @@ public class TestDataGenerator {
 
                 File file = new File(filename);
                 if (!file.exists() || file.length() == 0) {
-                    int size = generateRandom(5, MAX_NODES);
+                    int size = generateRandom(MIN_NODES, MAX_NODES);
                     generateTestFile(filename, size);
                     break;
                 }
@@ -35,7 +36,7 @@ public class TestDataGenerator {
 
             // Generate the matrix directly in this class
             int[][] graph = new int[size][size];
-            fillGraph(graph, size, MAX_WEIGHT);
+            fillGraph(graph, size);
 
             writeMatrix(writer, graph);
         } catch (IOException e) {
@@ -44,14 +45,14 @@ public class TestDataGenerator {
         }
     }
 
-    private static void fillGraph(int[][] graph, int size, int maxWeight) {
+    private static void fillGraph(int[][] graph, int size) {
         Random rand = new Random();
         for (int i = 0; i < size; i++) {
             for (int j = i; j < size; j++) {
                 if (i == j) {
                     graph[i][j] = 0;
                 } else {
-                    int weight = rand.nextInt(maxWeight) + 1;  // The +1 is to avoid zero weights
+                    int weight = rand.nextInt(MAX_WEIGHT) + 1;  // The +1 is to avoid zero weights
                     graph[i][j] = weight;
                     graph[j][i] = weight;  // It's a symmetric graph
                 }

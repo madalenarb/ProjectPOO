@@ -15,6 +15,7 @@
 package main;
 
 import event.EventManager;
+import main.utils.OutputFile;
 
 import java.io.IOException;
 
@@ -38,6 +39,7 @@ public class Main {
             } else if(args.length > 12){
                 main.utils.MessageError.CommandNotFound("Too many arguments", args[0]);
             } else {
+                OutputFile.initialize("inputFile.txt");
                 ParameterReader.readParameters(args);
             }
         }

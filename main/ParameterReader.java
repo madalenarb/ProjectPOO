@@ -1,6 +1,7 @@
 package main;
 
 import java.io.BufferedReader;
+import java.io.File;
 
 import graph.GraphFacade;
 import main.utils.ConsoleFilePrinters;
@@ -191,8 +192,13 @@ public class ParameterReader {
         if (!inputFile.endsWith(".txt")) {
             MessageError.FileExtensionNotSupported("File extension must be .txt", inputFile);
         }
-        
-        OutputFile.initialize(inputFile);
+        File file = new File(inputFile.replaceAll("\\s", ""));
+        String fileName = file.getName();
+        if (!fileName.matches("input\\d+\\.txt")) {
+            MessageError.FileFormatNotSupported("File Format is wrong", fileName);
+        }
+        String outputFileName =  fileName.replaceFirst("input(\\d+)\\.txt", "simscenario$1.txt");
+        OutputFile.initialize(outputFileName);
 
 
         try(BufferedReader br = new BufferedReader(new FileReader(inputFile))){

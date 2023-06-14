@@ -200,9 +200,12 @@ public class ParameterReader {
                         MessageError.WrongNumberOfArguments("Wrong number of arguments in the input file, it must be 10, instead of " + numberofParameters + "");
                     }
                     n = Integer.parseInt(parameters[0]);
+                    if (n < 1) {
+                        MessageError.InvalidArgument("Invalid argument in the input file, n must be greater than 0");
+                    }
                     // System.out.println("n: " + n);
-                    n1 = Integer.parseInt(parameters[1])-1;
                     // System.out.println("n1: " + n1);
+                    n1 = Integer.parseInt(parameters[1])-1;
                     alpha = Float.parseFloat(parameters[2]);
                     // System.out.println("alpha: " + alpha);
                     beta = Float.parseFloat(parameters[3]);
@@ -218,6 +221,7 @@ public class ParameterReader {
                     nu = Integer.parseInt(parameters[8]);
                     // System.out.println("nu: " + nu);
                     tau = Float.parseFloat(parameters[9]);
+
                     // System.out.println("tau: " + tau);
                     // Create graph with Hamiltonian cycle
                     g = GraphFacade.getInstance();

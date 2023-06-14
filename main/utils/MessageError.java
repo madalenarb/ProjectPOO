@@ -41,6 +41,14 @@ public class MessageError {
         System.exit(1);
     }
 
+
+    public static void InvalidArgument(String message) {
+        System.out.println(CmdTextFormatter.RED + "(!!!) WARNING ");
+        System.out.println(CmdTextFormatter.RESET + message + "\n\n" +
+                CorrectUsage());
+        System.exit(1);
+    }
+
     /**
      * Throws an exception for a file extension not supported.
      *

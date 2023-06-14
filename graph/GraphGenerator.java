@@ -3,6 +3,8 @@ package graph;
 import java.util.Arrays;
 import java.util.Random;
 
+import main.utils.ConsoleFilePrinters;
+
 /**
  * GraphGenerator class.
  * Utility class for generating a graph representation, with the ability to set weights, 
@@ -156,13 +158,15 @@ class GraphGenerator {
      * Prints the graph.
      */
     public void printGraph() {
+        StringBuilder sb = new StringBuilder();
     	for(int[] row : graph) {
-    		System.out.print("\t\t\t");
+    		sb.append("\t\t\t");
     		for(int cell : row) {
-    			System.out.print(cell + " ");
+    			sb.append(cell + " ");
     		}
-    		System.out.println();
+    		sb.append("\n");
     	}
+        ConsoleFilePrinters.getInstance().printf(sb.toString());
     }
     
 }

@@ -1,7 +1,6 @@
 package main;
 
 import java.io.BufferedReader;
-import java.io.Console;
 
 import graph.GraphFacade;
 import main.utils.ConsoleFilePrinters;

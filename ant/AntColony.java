@@ -1,6 +1,6 @@
 package ant;
 import main.ParameterReader;
-import main.utils.ConsoleFilePrinters;
+import main.utils.PrinterController;
 import cycle.Cycle;
 import event.EventManager;
 import java.util.Comparator;
@@ -49,11 +49,11 @@ public class AntColony {
 	 * Prints the best Hamiltonian cycle found by the ants.
 	 */
 	public void printBestHamiltonianCycle() {
-		ConsoleFilePrinters.getInstance().printf("\t\t\t");
+		PrinterController.getInstance().printf("\t\t\t");
 		try{
 			best.printElements();
 		} catch (Exception e) {
-			ConsoleFilePrinters.getInstance().println("No Hamiltonian cycle found.");
+			PrinterController.getInstance().println("No Hamiltonian cycle found.");
 		}
 	}
 	
@@ -65,9 +65,9 @@ public class AntColony {
 		for (Cycle c : hamiltonianCycleQueue) {
 			if (count >= 5) break; // only print the top 5 cycles
 	
-			ConsoleFilePrinters.getInstance().printf("\t\t\t");
+			PrinterController.getInstance().printf("\t\t\t");
 			c.printElements();
-			ConsoleFilePrinters.getInstance().println("");
+			PrinterController.getInstance().println("");
 			count++;
 		}
 	}

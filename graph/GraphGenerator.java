@@ -3,7 +3,7 @@ package graph;
 import java.util.Arrays;
 import java.util.Random;
 
-import main.utils.ConsoleFilePrinters;
+import main.utils.PrinterController;
 
 /**
  * GraphGenerator class.
@@ -166,7 +166,7 @@ class GraphGenerator {
     		}
     		sb.append("\n");
     	}
-        ConsoleFilePrinters.getInstance().printf(sb.toString());
+        PrinterController.getInstance().printf(sb.toString());
     }
     
 }

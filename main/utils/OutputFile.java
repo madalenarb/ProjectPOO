@@ -33,7 +33,7 @@ public class OutputFile {
         }
 
         try {
-            ConsoleFilePrinters.initialize(outputFile, PrinterType.BOTH);
+            PrinterController.initialize(outputFile, PrinterType.BOTH);
         } catch (FileNotFoundException e) {
             MessageError.FileNotFoundWithInput(outputFile);
         }

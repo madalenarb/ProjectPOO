@@ -5,7 +5,7 @@ import java.util.ListIterator;
 import java.util.Iterator;
 import graph.GraphFacade;
 import main.ParameterReader;
-import main.utils.ConsoleFilePrinters;
+import main.utils.PrinterController;
 
 import java.util.BitSet;
 import event.EventManager;
@@ -187,6 +187,6 @@ public class Cycle {
 			}
 		}
 		sb.append("}:" + currentCycleWeight);
-		ConsoleFilePrinters.getInstance().println(sb.toString());
+		PrinterController.getInstance().println(sb.toString());
 	}
 }

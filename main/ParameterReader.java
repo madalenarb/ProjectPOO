@@ -1,12 +1,10 @@
 package main;
 
 import java.io.BufferedReader;
-import java.io.File;
 
 import graph.GraphFacade;
-import main.utils.ConsoleFilePrinters;
+import main.utils.PrinterController;
 import main.utils.MessageError;
-import main.utils.OutputFile;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -189,18 +187,6 @@ public class ParameterReader {
      * @param inputFile the file from which the parameters are read
      */
     public static void readInputFile(String inputFile){
-        if (!inputFile.endsWith(".txt")) {
-            MessageError.FileExtensionNotSupported("File extension must be .txt", inputFile);
-        }
-        File file = new File(inputFile.replaceAll("\\s", ""));
-        String fileName = file.getName();
-        if (!fileName.matches("input\\d+\\.txt")) {
-            MessageError.FileFormatNotSupported("File Format is wrong", fileName);
-        }
-        String outputFileName =  fileName.replaceFirst("input(\\d+)\\.txt", "simscenario$1.txt");
-        OutputFile.initialize(outputFileName);
-
-
         try(BufferedReader br = new BufferedReader(new FileReader(inputFile))){
             int lineCount = 0;
             String line = br.readLine();
@@ -258,20 +244,20 @@ public class ParameterReader {
      */
     public static void printParameters() {
         int nest = n1 + 1;
-        ConsoleFilePrinters.getInstance().println("Input parameters:");
-        ConsoleFilePrinters.getInstance().println("\t\t\t" + n + ": number of nodes in the graph");
-        ConsoleFilePrinters.getInstance().println("\t\t\t" + nest + " : the nest node");
-        ConsoleFilePrinters.getInstance().println("\t\t\t" + alpha + " : alpha, ant move event");
-        ConsoleFilePrinters.getInstance().println("\t\t\t" + beta + " : beta, ant move event");
-        ConsoleFilePrinters.getInstance().println("\t\t\t" + delta + " : delta, ant move event");
-        ConsoleFilePrinters.getInstance().println("\t\t\t" + eta + " : eta, pheromone evaporation event");
-        ConsoleFilePrinters.getInstance().println("\t\t\t" + rho + " : rho, pheromone evaporation event");
-        ConsoleFilePrinters.getInstance().println("\t\t\t" + gamma + " : pheromone level");
-        ConsoleFilePrinters.getInstance().println("\t\t\t" + nu + " : ant colony size");
-        ConsoleFilePrinters.getInstance().println("\t\t\t" + tau + " : final instant");
-        ConsoleFilePrinters.getInstance().println("\twith graph:");
+        PrinterController.getInstance().println("Input parameters:");
+        PrinterController.getInstance().println("\t\t\t" + n + ": number of nodes in the graph");
+        PrinterController.getInstance().println("\t\t\t" + nest + " : the nest node");
+        PrinterController.getInstance().println("\t\t\t" + alpha + " : alpha, ant move event");
+        PrinterController.getInstance().println("\t\t\t" + beta + " : beta, ant move event");
+        PrinterController.getInstance().println("\t\t\t" + delta + " : delta, ant move event");
+        PrinterController.getInstance().println("\t\t\t" + eta + " : eta, pheromone evaporation event");
+        PrinterController.getInstance().println("\t\t\t" + rho + " : rho, pheromone evaporation event");
+        PrinterController.getInstance().println("\t\t\t" + gamma + " : pheromone level");
+        PrinterController.getInstance().println("\t\t\t" + nu + " : ant colony size");
+        PrinterController.getInstance().println("\t\t\t" + tau + " : final instant");
+        PrinterController.getInstance().println("\twith graph:");
         GraphFacade.getInstance().printAntGraph();
-        ConsoleFilePrinters.getInstance().println("");
+        PrinterController.getInstance().println("");
     }
     
 }

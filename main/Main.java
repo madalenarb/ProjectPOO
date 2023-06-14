@@ -39,7 +39,7 @@ public class Main {
             } else if(args.length > 12){
                 main.utils.MessageError.CommandNotFound("Too many arguments", args[0]);
             } else {
-                OutputFile.initialize("inputFile.txt");
+                OutputFile.initialize(null, false);
                 ParameterReader.readParameters(args);
             }
         }
@@ -50,6 +50,7 @@ public class Main {
             } else if(args.length > 2){
                 main.utils.MessageError.CommandNotFound("Too many arguments", args[0]);
             } else {
+                OutputFile.initialize(args[1], true);
                 ParameterReader.readInputFile(args[1]);
             }
         }
@@ -59,5 +60,10 @@ public class Main {
         EventManager eventManager = EventManager.getInstance();
         eventManager.initializePEC();
         eventManager.run();
+        try{
+            OutputFile.close();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
     }
 }

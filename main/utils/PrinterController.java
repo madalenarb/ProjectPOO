@@ -6,8 +6,8 @@ import java.io.FileNotFoundException;
  * The ConsoleFilePrinters class provides functionality for printing text to both the console and a file.
  * It supports different printer types, such as console-only, file-only, or both.
  */
-public class ConsoleFilePrinters {
-    private static ConsoleFilePrinters instance;
+public class PrinterController {
+    private static PrinterController instance;
     private Printer consolePrinter;
     private Printer filePrinter;
     private PrinterType printerType;
@@ -20,7 +20,7 @@ public class ConsoleFilePrinters {
      * @param type        The type of printer (CONSOLE, FILE, or BOTH).
      * @throws FileNotFoundException If the file specified by fileName is not found.
      */
-    private ConsoleFilePrinters(String fileName, PrinterType type) throws FileNotFoundException {
+    private PrinterController(String fileName, PrinterType type) throws FileNotFoundException {
         this.consolePrinter = new ConsolePrinter();
         this.filePrinter = new FilePrinter(fileName);
         this.printerType = type;
@@ -36,7 +36,7 @@ public class ConsoleFilePrinters {
      */
     public static synchronized void initialize(String fileName, PrinterType type) throws FileNotFoundException {
         if (instance == null) {
-            instance = new ConsoleFilePrinters(fileName, type);
+            instance = new PrinterController(fileName, type);
         } else {
             throw new RuntimeException("ConsoleFilePrinters has already been initialized.");
         }
@@ -47,7 +47,7 @@ public class ConsoleFilePrinters {
      *
      * @return The singleton instance of ConsoleFilePrinters.
      */
-    public static synchronized ConsoleFilePrinters getInstance() {
+    public static synchronized PrinterController getInstance() {
         if (instance == null) {
             throw new RuntimeException("ConsoleFilePrinters has not been initialized. Call initialize() before using getInstance().");
         }

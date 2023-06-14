@@ -1,17 +1,12 @@
 /**
- * The pheromone package contains classes that manage the pheromone levels on the edges of the graph in the Ant Colony Optimization algorithm.
- * It includes a class for representing the pheromone map and methods for adding, removing, and accessing the pheromone levels.
+ * Provides the classes necessary to represent and manage a map of pheromones
+ * laid on the edges of a graph. Used in algorithms mimicking the behavior of ants,
+ * such as the Ant Colony Optimization algorithms.
  *
- * <p>The main classes in this package are:
- * - {@link pheromone.PheromoneMap}: Represents a map of pheromones laid on the edges of the graph. It provides methods for managing and accessing the pheromone levels.
- *   - {@code addPheromone(int startNode, int endNode, double pheromoneLevel)}: Adds pheromones to the edge between two nodes in the graph.
- *   - {@code removePheromone(int startNode, int endNode)}: Removes pheromones from the edge between two nodes in the graph.
- *   - {@code getPheromoneLevel(int startNode, int endNode)}: Gets the level of pheromones on the edge between two nodes in the graph.
- *   - {@code increasePheromoneLevel(int startNode, int endNode, double increasePheromones)}: Increases the level of pheromones on the edge between two nodes in the graph.
- *   - {@code reducePheromoneLevel(double decrement, int startNode, int endNode)}: Reduces the level of pheromones on the edge between two nodes in the graph.
- *   - {@code printEdges()}: Prints all edges in the graph and their associated pheromone levels.
- *
- * <p>The pheromone levels are stored in a map where the keys are arrays of integers representing the start and end nodes of an edge,
- * and the values are the corresponding pheromone levels.
+ * <p>Includes the PheromoneMap class, which manages a map of pheromones, including
+ * methods for adding, removing, increasing, and reducing pheromones on edges, as well as
+ * retrieving the pheromone level on an edge and printing all edges and their associated
+ * pheromone levels.</p>
+ * 
  */
 package pheromone;

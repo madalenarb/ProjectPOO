@@ -67,3 +67,28 @@ On MacOs:
 ```bash
 make openjavadocMac
 ```
+
+# Test Files
+The tests are in the SIM folder. 
+To run all the tests:
+```bash
+make runTestFiles
+```
+
+## SIM Files
+In this folder, there are files with the following format:
+1. **input1.txt**: Simple 5-node graph
+2. **input2.txt**: Bigger graph with 100 nodes and weighted edges.
+3. **input3.txt**: 5-node graph with negative weights.
+4. **input4.txt**: 5-node graph with negative weights and has negative parameters.
+5. **input5.txt**: Graph with 5 nodes and that is not symmetric.
+6. **input6.txt**: 6-node sparce graph with only a Hamiltonian cycle.
+7. **input7.txt**: 6-node dense graph.
+8. **input8.txt**: Irregular Graph.
+9. **input9.txt**: 8-node simple graph.
+10. **input10.txt**: 8-node sparse graph.
+11. **input11.txt**: 2377-node graph (Large graph).
+12. **input12.txt**: 2377-node graph (Large graph) with less time and less ants.
+13. **input13.txt**: 6-node graph filled with 0s - disconnected graph.
+14. **input14.txt**: 6-node graph filled with 2s.
+15. **input15.txt**: 6-node graph with a diagonal of 0s.

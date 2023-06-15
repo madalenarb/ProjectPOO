@@ -41,7 +41,6 @@ class GraphGenerator {
     private void setWeight(int i, int j, int w) {
         if(w < 0) {
         	MessageError.InvalidArgument("Weight cannot be negative.");
-        	System.exit(1);
         }
     	graph[i][j] = w;
     }
@@ -157,20 +156,6 @@ class GraphGenerator {
     	for(int i = 0; i < graph[linecnt-1].length; i++){
             int weight = Integer.parseInt(w[i]);
     		this.setWeight(linecnt - 1, i, weight);
-        }
-    }
-
-    /**
-     * Checks if the graph is symmetric.
-     */
-    public void checkGraphSymmetry() {
-        for (int i = 0; i < graph.length; i++) {
-            for (int j = i + 1; j < graph[i].length; j++) {
-                if (graph[i][j] != graph[j][i]) {
-                    MessageError.InvalidArgument("The provided graph is not symmetric.");
-                    System.exit(1);
-                }
-            }
         }
     }
     

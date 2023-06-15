@@ -241,6 +241,10 @@ public class ParameterReader {
         } catch (IOException e) {
             MessageError.FileNotFoundWithInput(inputFile);
         }      
+        GraphFacade.getInstance().checkGraphSymmetry();
+        if(GraphFacade.getInstance().isDisconnected()){
+            MessageError.InvalidArgument("The graph is invalid, the graph isn't connected");
+        }
     }
     
     /**

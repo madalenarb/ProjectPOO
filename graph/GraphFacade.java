@@ -2,6 +2,7 @@ package graph;
 
 import pheromone.PheromoneMap;
 import main.ParameterReader;
+import main.utils.MessageError;
 
 /**
  * Provides a facade interface to interact with the graph and pheromone map.
@@ -51,6 +52,34 @@ public class GraphFacade {
 	}
 	
 	/**
+	 * Checks if the graph is symmetric and has no non-zero diagonal elements.
+	 */
+	public void checkGraphSymmetry() {
+		for(int i = 0; i < ParameterReader.getN(); i++) {
+			for(int j = i; j < ParameterReader.getN(); j++) {
+				if(antGraph.getWeight(i, j) != antGraph.getWeight(j, i)) {
+					MessageError.InvalidArgument("Graph is not symmetric.");
+				}
+				if(i == j && antGraph.getWeight(i, j) != 0) {
+					MessageError.InvalidArgument("Graph has non-zero diagonal elements.");
+				}
+			}
+		}
+	}
+
+	/**
+	 * Returns the total weight of the agraph.
+	 * @return The total weight of the graph.
+	 */
+	public boolean isDisconnected(){
+		if(GraphFacade.getInstance().getTotalWeight() == 0){
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	/**
 	 * Returns the pheromone level of an edge between two nodes.
 	 * @param node1 The first node.
 	 * @param node2 The second node.
@@ -59,6 +88,8 @@ public class GraphFacade {
 	public double getPheromones(int node1, int node2) {
 		return pheromoneMap.getPheromoneLevel(node1, node2);
 	}
+	
+
 	
 	/**
 	 * Prints the ant graph.
@@ -94,7 +125,7 @@ public class GraphFacade {
 	public void increaseEdgePheromones(int node1, int node2, double increment) {
 		pheromoneMap.increasePheromoneLevel(node1, node2, increment);
 	}
-	
+
 	/**
 	 * Reduces the pheromone level of an edge.
 	 * @param startNode The start node.
@@ -118,4 +149,6 @@ public class GraphFacade {
 		}
 		return totalweight;
 	}
+
+	
 }

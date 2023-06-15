@@ -54,7 +54,7 @@ public class OutputFile {
             fileName = "SIM/simscenario" + i + ".txt";
             file = new File(fileName);
             i++;
-        } while (file.exists() && file.length() != 0);
+        } while (file.exists());
         return fileName;
     }
 

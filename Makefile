@@ -71,8 +71,15 @@ openjavadocWindows: javadoc
 clean:
 	$(RM) -r $(CLASSDIR) $(JARFILE) $(MANIFEST) $(DOCDIR)
 
-# Clean the SIM folder
+# Clean specific files in the SIM folder
 clean-sim:
-	$(RM) -r SIM
+	$(RM) SIM/simscenario*.txt
+
+# Run test files
+runTestFiles:
+	for file in SIM/input*.txt ; do \
+		java -jar project.jar -f $$file ; \
+	done
+
 
 .PHONY: clean javadoc openjavadocUbuntu openjavadocMac openjavadocWindows clean-sim

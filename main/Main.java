@@ -15,7 +15,6 @@
 package main;
 
 import event.EventManager;
-import main.utils.MessageError;
 import main.utils.OutputFile;
 
 import java.io.IOException;

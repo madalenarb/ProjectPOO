@@ -265,7 +265,7 @@ public class ParameterReader {
      * Verifies if the parameters are valid.
      */
     public static void verifyParameters(boolean FileMode) {
-    	if(n <= 2) {
+    	if(n < 2) {
     		MessageError.InvalidArgument("Invalid argument, n must be greater than 1");
     	}
         if(a < 1 && !FileMode) {

@@ -72,7 +72,7 @@ public class GraphFacade {
 	 * @return The total weight of the graph.
 	 */
 	public boolean isDisconnected(){
-		if(GraphFacade.getInstance().getTotalWeight() == 0){
+		if(getTotalWeight() == 0){
 			return true;
 		} else {
 			return false;

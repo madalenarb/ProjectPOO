@@ -271,7 +271,7 @@ public class ParameterReader {
         if(a < 1 && !FileMode) {
             MessageError.InvalidArgument("Invalid argument, a must be greater than 0");
         }
-    	if(n1 <= 0) {
+    	if(n1 < 0) {
     		MessageError.InvalidArgument("Invalid argument, n1 must be greater than 0");
     	}
     	if(alpha <= 0) {

@@ -112,7 +112,9 @@ class GraphGenerator {
             this.setWeight(currNode, prevNode, weight);
             prevNode = currNode;
         }
-        
+        if(n <= 2){
+            return;
+        }
         // Given that the previous code created n edges
         // (the minimal to create a hamiltonian cycle),
         // we will sample a random number between 0 and

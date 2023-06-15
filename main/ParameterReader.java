@@ -284,13 +284,13 @@ public class ParameterReader {
     		MessageError.InvalidArgument("Invalid argument in the input file, delta must be greater than 0");
     	}
     	if(eta <= 0) {
-    		MessageError.InvalidArgument("Invalid argument in the input file, eta must be greater than 0 and less than 1");
+    		MessageError.InvalidArgument("Invalid argument in the input file, eta must be greater or equal than 0");
     	}
     	if(rho <= 0) {
-    		MessageError.InvalidArgument("Invalid argument in the input file, rho must be greater than 0 and less than 1");
+    		MessageError.InvalidArgument("Invalid argument in the input file, rho must be greater or equal than 0"); 
     	}
-    	if(gamma <= 0 || gamma > 1) {
-    		MessageError.InvalidArgument("Invalid argument in the input file, gamma must be greater than 0 and less than 1");
+    	if(gamma <= 0 ) {
+    		MessageError.InvalidArgument("Invalid argument in the input file, gamma must be greater than 0");
     	}
     	if(nu < 1) {
     		MessageError.InvalidArgument("Invalid argument in the input file, nu must be greater than 0");

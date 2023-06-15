@@ -239,12 +239,16 @@ public class ParameterReader {
                     g = GraphFacade.getInstance();
                 } 
                 else {
-                    String[] weights = line.trim().split("\\s+");
-                    if(weights.length != n){
-                        MessageError.WrongNumberOfArguments("Wrong number of edges in the input file, it must be " + n + " instead of " + weights.length + "");
-                    }
-                    if(g != null) {
-                        g.fillGraphFileMode(weights, lineCount);
+                    try{
+                        String[] weights = line.trim().split("\\s+");
+                        if(weights.length != n){
+                            MessageError.WrongNumberOfArguments("Wrong number of edges in the input file, it must be " + n + " instead of " + weights.length + "");
+                        }
+                        if(g != null) {
+                            g.fillGraphFileMode(weights, lineCount);
+                        }
+                    } catch (NumberFormatException e){
+                        MessageError.InvalidArgument("Wrong argument type for the weights in the input file. They must be integers.");
                     }
                 }
                 lineCount++;

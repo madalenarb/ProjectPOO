@@ -8,7 +8,7 @@ public class TestDataGenerator {
     private static final int MIN_NODES = 1000;
     private static final int MAX_WEIGHT = 10;
     private static final String TESTS_DIRECTORY = "SIM";
-    private static final int MAX_TIME = 40000;
+    private static final int MAX_TIME = 4000;
     private static final int numberOfTests = 1;
 
     public static void main(String[] args) {

@@ -8,13 +8,13 @@ JFLAGS = -g --release 8
 JAVADOC = javadoc
 
 # Source directories
-SRCDIRS = ant cycle event graph main
-
-# Java source files (excluding Main.java)
-SRCS = $(shell find . -name "*.java")
+SRCDIRS = ant cycle event graph main pheromone
 
 # Java class directory
 CLASSDIR = classes
+
+# Java source files (excluding Main.java)
+SRCS = $(foreach dir,$(SRCDIRS),$(wildcard $(dir)/*.java))
 
 # Java class files
 CLASSES = $(SRCS:%.java=$(CLASSDIR)/%.class)
@@ -65,8 +65,6 @@ openjavadocMac: javadoc
 openjavadocWindows: javadoc
 	start $(DOCDIR)/index.html
 
-# Open Javadoc in a browser
-
 # Clean generated files
 clean:
 	$(RM) -r $(CLASSDIR) $(JARFILE) $(MANIFEST) $(DOCDIR)
@@ -80,6 +78,5 @@ runTestFiles:
 	for file in SIM/input*.txt ; do \
 		java -jar project.jar -f $$file ; \
 	done
-
 
 .PHONY: clean javadoc openjavadocUbuntu openjavadocMac openjavadocWindows clean-sim

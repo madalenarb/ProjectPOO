@@ -4,11 +4,11 @@ import java.io.PrintWriter;
 import java.util.Random;
 
 public class TestDataGenerator {
-    private static final int MAX_NODES = 7;
-    private static final int MIN_NODES = 6;
+    private static final int MAX_NODES = 1500;
+    private static final int MIN_NODES = 1000;
     private static final int MAX_WEIGHT = 10;
     private static final String TESTS_DIRECTORY = "SIM";
-    private static final int MAX_TIME = 600;
+    private static final int MAX_TIME = 40000;
     private static final int numberOfTests = 1;
 
     public static void main(String[] args) {

@@ -31,7 +31,9 @@ public class Main {
      * The entry point for running the Ant Colony Optimization algorithm.
     */
     public static void main(String[] args) throws IOException {
-		
+        if(args.length < 2)
+            main.utils.MessageError.CommandNotFound("Too few arguments", args[0]);
+        
         ParameterReader.readingMode(args[0]);
         if(ParameterReader.getReadingMode() == 0){
             if(args.length < 12){

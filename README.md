@@ -96,7 +96,6 @@ In this folder, there are files with the following format:
 17. **input17.txt**: 500-node graph, mostly with 0s.
 18. **input18.txt**: 8-node graph with weighted edges for the most part.
 19. **input19.txt**: 2-node graph.
-20. **input20.txt**: 1136-node graph (Large graph).
-21. **input21.txt**: File only with inputs and no graph.
-22. **input22.txt**: 4-node graph with letters in graph.
-23. **input23.txt**: 11-node graph.
+20. **input21.txt**: File only with inputs and no graph.
+21. **input22.txt**: 4-node graph with letters in graph.
+22. **input23.txt**: 11-node graph.

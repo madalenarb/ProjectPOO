@@ -12,59 +12,66 @@
  * </ul>
  */
 
-package main;
+ package main;
 
-import event.EventManager;
-import main.utils.OutputFile;
-
-import java.io.IOException;
-
-/**
- * The main class for the Ant Colony Optimization algorithm.
- *
- * <p>This class contains the entry point for running the algorithm and controlling the execution flow.
- * It initializes the necessary components, such as the ant colony and event manager, and runs the simulation.
- */
-public class Main {
-	
-    /** 
-     * The entry point for running the Ant Colony Optimization algorithm.
-    */
-    public static void main(String[] args) throws IOException {
-        if(args.length < 2)
-            main.utils.MessageError.CommandNotFound("Too few arguments", args[0]);
-        
-        ParameterReader.readingMode(args[0]);
-        if(ParameterReader.getReadingMode() == 0){
-            if(args.length < 12){
-                main.utils.MessageError.CommandNotFound("Too few arguments", args[0]);
-            } else if(args.length > 12){
-                main.utils.MessageError.CommandNotFound("Too many arguments", args[0]);
-            } else {
-                OutputFile.initialize(null, false);
-                ParameterReader.readParameters(args);
-            }
-        }
-
-        else if(ParameterReader.getReadingMode() == 1){
-            if(args.length < 2){
-                main.utils.MessageError.CommandNotFound("Too few arguments", args[0]);
-            } else if(args.length > 2){
-                main.utils.MessageError.CommandNotFound("Too many arguments", args[0]);
-            } else {
-                OutputFile.initialize(args[1], true);
-                ParameterReader.readInputFile(args[1]);
-            }
-        }
-        ParameterReader.printParameters();
-
-        EventManager eventManager = EventManager.getInstance();
-        eventManager.initializePEC();
-        eventManager.run();
-        try{
-            OutputFile.close();
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-    }
-}
+ import event.EventManager;
+ import main.utils.OutputFile;
+ 
+ import java.io.IOException;
+ 
+ /**
+  * The main class for the Ant Colony Optimization algorithm.
+  *
+  * <p>This class contains the entry point for running the algorithm and controlling the execution flow.
+  * It initializes the necessary components, such as the ant colony and event manager, and runs the simulation.
+  */
+ public class Main {
+     
+     /** 
+      * The entry point for running the Ant Colony Optimization algorithm.
+     */
+     public static void main(String[] args) throws IOException {
+ 
+         try{
+             if(args.length == 0)
+                 main.utils.MessageError.CommandNotFound("Too few arguments", null);
+             else if(args.length < 2)
+                 main.utils.MessageError.CommandNotFound("Too few arguments", args[0]);
+         } catch (ArrayIndexOutOfBoundsException e){
+             main.utils.MessageError.CommandNotFound("Too few arguments", args[0]);
+         }
+         ParameterReader.readingMode(args[0]);
+         if(ParameterReader.getReadingMode() == 0){
+             if(args.length < 12){
+                 main.utils.MessageError.CommandNotFound("Too few arguments", args[0]);
+             } else if(args.length > 12){
+                 main.utils.MessageError.CommandNotFound("Too many arguments", args[0]);
+             } else {
+                 OutputFile.initialize(null, false);
+                 ParameterReader.readParameters(args);
+             }
+         }
+ 
+         else if(ParameterReader.getReadingMode() == 1){
+             if(args.length < 2){
+                 main.utils.MessageError.CommandNotFound("Too few arguments", args[0]);
+             } else if(args.length > 2){
+                 main.utils.MessageError.CommandNotFound("Too many arguments", args[0]);
+             } else {
+                 OutputFile.initialize(args[1], true);
+                 ParameterReader.readInputFile(args[1]);
+             }
+         }
+         ParameterReader.printParameters();
+ 
+         EventManager eventManager = EventManager.getInstance();
+         eventManager.initializePEC();
+         eventManager.run();
+         try{
+             OutputFile.close();
+         } catch (IOException e){
+             e.printStackTrace();
+         }
+     }
+ }
+ 

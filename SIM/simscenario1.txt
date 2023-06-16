@@ -18,280 +18,280 @@ Input parameters:
 
 Observation 1: 
 Present instant : 15.0                
-Number of move events : 4217                
-Number of evaporation events : 486                 
+Number of move events : 4331                
+Number of evaporation events : 536                 
 Top candidate cycles : 
 			{5,1,3,2,4}:14
 
-			{5,4,1,3,2}:21
-
 			{5,2,3,1,4}:21
+
+			{5,4,1,3,2}:21
 
 Best Hamiltonian cycle :
 			{5,4,2,3,1}:14
 
 Observation 2: 
 Present instant : 30.0                
-Number of move events : 7843                
-Number of evaporation events : 1082                
+Number of move events : 8074                
+Number of evaporation events : 1107                
 Top candidate cycles : 
 			{5,1,3,2,4}:14
 
-			{5,4,1,3,2}:21
-
 			{5,2,3,1,4}:21
+
+			{5,4,1,3,2}:21
 
 Best Hamiltonian cycle :
 			{5,4,2,3,1}:14
 
 Observation 3: 
 Present instant : 45.0                
-Number of move events : 11429               
-Number of evaporation events : 1613                
+Number of move events : 11800               
+Number of evaporation events : 1736                
 Top candidate cycles : 
 			{5,1,3,2,4}:14
 
-			{5,4,1,3,2}:21
-
 			{5,2,3,1,4}:21
+
+			{5,4,1,3,2}:21
 
 Best Hamiltonian cycle :
 			{5,4,2,3,1}:14
 
 Observation 4: 
 Present instant : 60.0                
-Number of move events : 15248               
-Number of evaporation events : 2142                
+Number of move events : 15532               
+Number of evaporation events : 2230                
 Top candidate cycles : 
 			{5,1,3,2,4}:14
 
-			{5,4,1,3,2}:21
-
 			{5,2,3,1,4}:21
+
+			{5,4,1,3,2}:21
 
 Best Hamiltonian cycle :
 			{5,4,2,3,1}:14
 
 Observation 5: 
 Present instant : 75.0                
-Number of move events : 18873               
-Number of evaporation events : 2606                
+Number of move events : 19255               
+Number of evaporation events : 2690                
 Top candidate cycles : 
 			{5,1,3,2,4}:14
 
-			{5,4,1,3,2}:21
-
 			{5,2,3,1,4}:21
+
+			{5,4,1,3,2}:21
 
 Best Hamiltonian cycle :
 			{5,4,2,3,1}:14
 
 Observation 6: 
 Present instant : 90.0                
-Number of move events : 22606               
-Number of evaporation events : 3098                
+Number of move events : 22842               
+Number of evaporation events : 3170                
 Top candidate cycles : 
 			{5,1,3,2,4}:14
 
-			{5,4,1,3,2}:21
-
 			{5,2,3,1,4}:21
+
+			{5,4,1,3,2}:21
 
 Best Hamiltonian cycle :
 			{5,4,2,3,1}:14
 
 Observation 7: 
 Present instant : 105.0               
-Number of move events : 26254               
-Number of evaporation events : 3675                
+Number of move events : 26621               
+Number of evaporation events : 3687                
 Top candidate cycles : 
 			{5,1,3,2,4}:14
 
-			{5,4,1,3,2}:21
-
 			{5,2,3,1,4}:21
+
+			{5,4,1,3,2}:21
 
 Best Hamiltonian cycle :
 			{5,4,2,3,1}:14
 
 Observation 8: 
 Present instant : 120.0               
-Number of move events : 29940               
-Number of evaporation events : 4206                
+Number of move events : 30382               
+Number of evaporation events : 4163                
 Top candidate cycles : 
 			{5,1,3,2,4}:14
 
-			{5,4,1,3,2}:21
-
 			{5,2,3,1,4}:21
+
+			{5,4,1,3,2}:21
 
 Best Hamiltonian cycle :
 			{5,4,2,3,1}:14
 
 Observation 9: 
 Present instant : 135.0               
-Number of move events : 33646               
-Number of evaporation events : 4823                
+Number of move events : 34164               
+Number of evaporation events : 4657                
 Top candidate cycles : 
 			{5,1,3,2,4}:14
 
-			{5,4,1,3,2}:21
-
 			{5,2,3,1,4}:21
+
+			{5,4,1,3,2}:21
 
 Best Hamiltonian cycle :
 			{5,4,2,3,1}:14
 
 Observation 10: 
 Present instant : 150.0               
-Number of move events : 37328               
-Number of evaporation events : 5300                
+Number of move events : 37967               
+Number of evaporation events : 5269                
 Top candidate cycles : 
 			{5,1,3,2,4}:14
 
-			{5,4,1,3,2}:21
-
 			{5,2,3,1,4}:21
+
+			{5,4,1,3,2}:21
 
 Best Hamiltonian cycle :
 			{5,4,2,3,1}:14
 
 Observation 11: 
 Present instant : 165.0               
-Number of move events : 41064               
-Number of evaporation events : 5862                
+Number of move events : 41593               
+Number of evaporation events : 5864                
 Top candidate cycles : 
 			{5,1,3,2,4}:14
 
-			{5,4,1,3,2}:21
-
 			{5,2,3,1,4}:21
+
+			{5,4,1,3,2}:21
 
 Best Hamiltonian cycle :
 			{5,4,2,3,1}:14
 
 Observation 12: 
 Present instant : 180.0               
-Number of move events : 44892               
-Number of evaporation events : 6392                
+Number of move events : 45272               
+Number of evaporation events : 6509                
 Top candidate cycles : 
 			{5,1,3,2,4}:14
 
-			{5,4,1,3,2}:21
-
 			{5,2,3,1,4}:21
+
+			{5,4,1,3,2}:21
 
 Best Hamiltonian cycle :
 			{5,4,2,3,1}:14
 
 Observation 13: 
 Present instant : 195.0               
-Number of move events : 48591               
-Number of evaporation events : 7007                
+Number of move events : 48868               
+Number of evaporation events : 6978                
 Top candidate cycles : 
 			{5,1,3,2,4}:14
 
-			{5,4,1,3,2}:21
-
 			{5,2,3,1,4}:21
+
+			{5,4,1,3,2}:21
 
 Best Hamiltonian cycle :
 			{5,4,2,3,1}:14
 
 Observation 14: 
 Present instant : 210.0               
-Number of move events : 52396               
-Number of evaporation events : 7627                
+Number of move events : 52609               
+Number of evaporation events : 7575                
 Top candidate cycles : 
 			{5,1,3,2,4}:14
 
-			{5,4,1,3,2}:21
-
 			{5,2,3,1,4}:21
+
+			{5,4,1,3,2}:21
 
 Best Hamiltonian cycle :
 			{5,4,2,3,1}:14
 
 Observation 15: 
 Present instant : 225.0               
-Number of move events : 56117               
-Number of evaporation events : 8184                
+Number of move events : 56318               
+Number of evaporation events : 8163                
 Top candidate cycles : 
 			{5,1,3,2,4}:14
 
-			{5,4,1,3,2}:21
-
 			{5,2,3,1,4}:21
+
+			{5,4,1,3,2}:21
 
 Best Hamiltonian cycle :
 			{5,4,2,3,1}:14
 
 Observation 16: 
 Present instant : 240.0               
-Number of move events : 59864               
-Number of evaporation events : 8763                
+Number of move events : 60160               
+Number of evaporation events : 8676                
 Top candidate cycles : 
 			{5,1,3,2,4}:14
 
-			{5,4,1,3,2}:21
-
 			{5,2,3,1,4}:21
+
+			{5,4,1,3,2}:21
 
 Best Hamiltonian cycle :
 			{5,4,2,3,1}:14
 
 Observation 17: 
 Present instant : 255.0               
-Number of move events : 63659               
-Number of evaporation events : 9305                
+Number of move events : 63933               
+Number of evaporation events : 9243                
 Top candidate cycles : 
 			{5,1,3,2,4}:14
 
-			{5,4,1,3,2}:21
-
 			{5,2,3,1,4}:21
+
+			{5,4,1,3,2}:21
 
 Best Hamiltonian cycle :
 			{5,4,2,3,1}:14
 
 Observation 18: 
 Present instant : 270.0               
-Number of move events : 67294               
-Number of evaporation events : 9730                
+Number of move events : 67644               
+Number of evaporation events : 9815                
 Top candidate cycles : 
 			{5,1,3,2,4}:14
 
-			{5,4,1,3,2}:21
-
 			{5,2,3,1,4}:21
+
+			{5,4,1,3,2}:21
 
 Best Hamiltonian cycle :
 			{5,4,2,3,1}:14
 
 Observation 19: 
 Present instant : 285.0               
-Number of move events : 70993               
-Number of evaporation events : 10280               
+Number of move events : 71397               
+Number of evaporation events : 10431               
 Top candidate cycles : 
 			{5,1,3,2,4}:14
 
-			{5,4,1,3,2}:21
-
 			{5,2,3,1,4}:21
+
+			{5,4,1,3,2}:21
 
 Best Hamiltonian cycle :
 			{5,4,2,3,1}:14
 
 Observation 20: 
 Present instant : 300.0               
-Number of move events : 74588               
-Number of evaporation events : 10851               
+Number of move events : 75116               
+Number of evaporation events : 11068               
 Top candidate cycles : 
 			{5,1,3,2,4}:14
 
-			{5,4,1,3,2}:21
-
 			{5,2,3,1,4}:21
+
+			{5,4,1,3,2}:21
 
 Best Hamiltonian cycle :
 			{5,4,2,3,1}:14

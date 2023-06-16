@@ -1,0 +1,379 @@
+Input parameters:
+			6: number of nodes in the graph
+			6 : the nest node
+			1.0 : alpha, ant move event
+			1.0 : beta, ant move event
+			0.2 : delta, ant move event
+			2.0 : eta, pheromone evaporation event
+			10.0 : rho, pheromone evaporation event
+			0.5 : pheromone level
+			200 : ant colony size
+			300.0 : final instant
+	with graph:
+			0 1 1 1 1 1 
+			1 0 1 1 1 1 
+			1 1 0 1 1 1 
+			1 1 1 0 1 1 
+			1 1 1 1 0 1 
+			1 1 1 1 1 0 
+
+Observation 1: 
+Present instant : 15.0                
+Number of move events : 14958               
+Number of evaporation events : 3668                
+Top candidate cycles : 
+			{6,4,3,5,1,2}:6
+
+			{6,4,5,3,1,2}:6
+
+			{6,1,2,4,5,3}:6
+
+			{6,3,2,1,5,4}:6
+
+			{6,1,5,3,2,4}:6
+
+Best Hamiltonian cycle :
+			{6,5,1,2,4,3}:6
+
+Observation 2: 
+Present instant : 30.0                
+Number of move events : 29772               
+Number of evaporation events : 8102                
+Top candidate cycles : 
+			{6,4,3,5,1,2}:6
+
+			{6,2,5,3,1,4}:6
+
+			{6,1,4,5,2,3}:6
+
+			{6,4,5,3,1,2}:6
+
+			{6,1,2,4,5,3}:6
+
+Best Hamiltonian cycle :
+			{6,5,1,2,4,3}:6
+
+Observation 3: 
+Present instant : 45.0                
+Number of move events : 44547               
+Number of evaporation events : 12533               
+Top candidate cycles : 
+			{6,3,4,1,2,5}:6
+
+			{6,1,3,2,5,4}:6
+
+			{6,4,3,5,1,2}:6
+
+			{6,2,5,3,1,4}:6
+
+			{6,1,4,5,2,3}:6
+
+Best Hamiltonian cycle :
+			{6,5,1,2,4,3}:6
+
+Observation 4: 
+Present instant : 60.0                
+Number of move events : 59900               
+Number of evaporation events : 17189               
+Top candidate cycles : 
+			{6,5,2,1,3,4}:6
+
+			{6,3,4,1,2,5}:6
+
+			{6,1,3,2,5,4}:6
+
+			{6,4,3,5,1,2}:6
+
+			{6,2,5,3,1,4}:6
+
+Best Hamiltonian cycle :
+			{6,5,1,2,4,3}:6
+
+Observation 5: 
+Present instant : 75.0                
+Number of move events : 74834               
+Number of evaporation events : 21654               
+Top candidate cycles : 
+			{6,5,2,1,3,4}:6
+
+			{6,3,4,1,2,5}:6
+
+			{6,1,3,2,5,4}:6
+
+			{6,4,3,5,1,2}:6
+
+			{6,2,5,3,1,4}:6
+
+Best Hamiltonian cycle :
+			{6,5,1,2,4,3}:6
+
+Observation 6: 
+Present instant : 90.0                
+Number of move events : 89786               
+Number of evaporation events : 26057               
+Top candidate cycles : 
+			{6,5,2,1,3,4}:6
+
+			{6,3,4,1,2,5}:6
+
+			{6,1,3,2,5,4}:6
+
+			{6,4,3,5,1,2}:6
+
+			{6,2,5,3,1,4}:6
+
+Best Hamiltonian cycle :
+			{6,5,1,2,4,3}:6
+
+Observation 7: 
+Present instant : 105.0               
+Number of move events : 104742              
+Number of evaporation events : 30513               
+Top candidate cycles : 
+			{6,5,2,1,3,4}:6
+
+			{6,3,4,1,2,5}:6
+
+			{6,1,3,2,5,4}:6
+
+			{6,3,2,4,1,5}:6
+
+			{6,4,3,5,1,2}:6
+
+Best Hamiltonian cycle :
+			{6,5,1,2,4,3}:6
+
+Observation 8: 
+Present instant : 120.0               
+Number of move events : 119825              
+Number of evaporation events : 35057               
+Top candidate cycles : 
+			{6,5,2,1,3,4}:6
+
+			{6,3,4,1,2,5}:6
+
+			{6,1,3,2,5,4}:6
+
+			{6,3,2,4,1,5}:6
+
+			{6,4,3,5,1,2}:6
+
+Best Hamiltonian cycle :
+			{6,5,1,2,4,3}:6
+
+Observation 9: 
+Present instant : 135.0               
+Number of move events : 134812              
+Number of evaporation events : 39636               
+Top candidate cycles : 
+			{6,3,5,2,1,4}:6
+
+			{6,1,4,3,2,5}:6
+
+			{6,5,2,1,3,4}:6
+
+			{6,3,4,1,2,5}:6
+
+			{6,1,3,2,5,4}:6
+
+Best Hamiltonian cycle :
+			{6,5,1,2,4,3}:6
+
+Observation 10: 
+Present instant : 150.0               
+Number of move events : 149806              
+Number of evaporation events : 44184               
+Top candidate cycles : 
+			{6,3,5,2,1,4}:6
+
+			{6,5,1,3,2,4}:6
+
+			{6,1,4,3,2,5}:6
+
+			{6,5,2,1,3,4}:6
+
+			{6,3,4,1,2,5}:6
+
+Best Hamiltonian cycle :
+			{6,5,1,2,4,3}:6
+
+Observation 11: 
+Present instant : 165.0               
+Number of move events : 164805              
+Number of evaporation events : 48882               
+Top candidate cycles : 
+			{6,3,5,2,1,4}:6
+
+			{6,5,1,3,2,4}:6
+
+			{6,1,4,3,2,5}:6
+
+			{6,5,2,1,3,4}:6
+
+			{6,3,4,1,2,5}:6
+
+Best Hamiltonian cycle :
+			{6,5,1,2,4,3}:6
+
+Observation 12: 
+Present instant : 180.0               
+Number of move events : 179801              
+Number of evaporation events : 53127               
+Top candidate cycles : 
+			{6,3,5,2,1,4}:6
+
+			{6,3,5,4,2,1}:6
+
+			{6,5,1,3,2,4}:6
+
+			{6,1,4,3,2,5}:6
+
+			{6,5,2,1,3,4}:6
+
+Best Hamiltonian cycle :
+			{6,5,1,2,4,3}:6
+
+Observation 13: 
+Present instant : 195.0               
+Number of move events : 194996              
+Number of evaporation events : 57415               
+Top candidate cycles : 
+			{6,3,5,2,1,4}:6
+
+			{6,3,5,4,2,1}:6
+
+			{6,2,1,4,3,5}:6
+
+			{6,5,1,3,2,4}:6
+
+			{6,1,4,3,2,5}:6
+
+Best Hamiltonian cycle :
+			{6,5,1,2,4,3}:6
+
+Observation 14: 
+Present instant : 210.0               
+Number of move events : 210071              
+Number of evaporation events : 62006               
+Top candidate cycles : 
+			{6,3,5,2,1,4}:6
+
+			{6,3,5,4,2,1}:6
+
+			{6,2,1,4,3,5}:6
+
+			{6,5,1,3,2,4}:6
+
+			{6,1,4,3,2,5}:6
+
+Best Hamiltonian cycle :
+			{6,5,1,2,4,3}:6
+
+Observation 15: 
+Present instant : 225.0               
+Number of move events : 225043              
+Number of evaporation events : 66639               
+Top candidate cycles : 
+			{6,3,5,2,1,4}:6
+
+			{6,4,1,5,3,2}:6
+
+			{6,3,5,4,2,1}:6
+
+			{6,2,1,4,3,5}:6
+
+			{6,5,1,3,2,4}:6
+
+Best Hamiltonian cycle :
+			{6,5,1,2,4,3}:6
+
+Observation 16: 
+Present instant : 240.0               
+Number of move events : 239909              
+Number of evaporation events : 71047               
+Top candidate cycles : 
+			{6,3,5,2,1,4}:6
+
+			{6,4,1,5,3,2}:6
+
+			{6,3,5,4,2,1}:6
+
+			{6,2,1,4,3,5}:6
+
+			{6,5,1,3,2,4}:6
+
+Best Hamiltonian cycle :
+			{6,5,1,2,4,3}:6
+
+Observation 17: 
+Present instant : 255.0               
+Number of move events : 254831              
+Number of evaporation events : 75252               
+Top candidate cycles : 
+			{6,3,5,2,1,4}:6
+
+			{6,4,1,5,3,2}:6
+
+			{6,3,5,4,2,1}:6
+
+			{6,2,1,4,3,5}:6
+
+			{6,5,1,3,2,4}:6
+
+Best Hamiltonian cycle :
+			{6,5,1,2,4,3}:6
+
+Observation 18: 
+Present instant : 270.0               
+Number of move events : 269997              
+Number of evaporation events : 79565               
+Top candidate cycles : 
+			{6,3,5,2,1,4}:6
+
+			{6,1,3,5,2,4}:6
+
+			{6,4,1,5,3,2}:6
+
+			{6,3,5,4,2,1}:6
+
+			{6,2,1,4,3,5}:6
+
+Best Hamiltonian cycle :
+			{6,5,1,2,4,3}:6
+
+Observation 19: 
+Present instant : 285.0               
+Number of move events : 285286              
+Number of evaporation events : 84374               
+Top candidate cycles : 
+			{6,3,5,2,1,4}:6
+
+			{6,1,3,5,2,4}:6
+
+			{6,4,1,5,3,2}:6
+
+			{6,2,4,3,1,5}:6
+
+			{6,3,5,4,2,1}:6
+
+Best Hamiltonian cycle :
+			{6,5,1,2,4,3}:6
+
+Observation 20: 
+Present instant : 300.0               
+Number of move events : 300292              
+Number of evaporation events : 88865               
+Top candidate cycles : 
+			{6,3,5,2,1,4}:6
+
+			{6,1,3,5,2,4}:6
+
+			{6,4,1,5,3,2}:6
+
+			{6,2,4,3,1,5}:6
+
+			{6,1,5,2,3,4}:6
+
+Best Hamiltonian cycle :
+			{6,5,1,2,4,3}:6
+

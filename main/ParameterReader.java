@@ -27,8 +27,6 @@ import java.io.IOException;
  *   <li>{@code nu}: The ant colony size.</li>
  *   <li>{@code tau}: The final instant of the simulation.</li>
  * </ul>
- *
- * @return The parameters.
  */
 
 public class ParameterReader {
@@ -77,7 +75,11 @@ public class ParameterReader {
     public static int getN() {
     	return n;
     }
-    
+
+    /**
+     * Gets the maximum weight of an edge.
+     * @return the maximum weight of an edge
+     */    
     public static int getMaxWeight(){
         return a;
     }
